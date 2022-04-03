@@ -34,6 +34,11 @@ namespace Bader.Infra.Repository
             return _context.Subscribers.ToList();
         }
 
+        public List<Message> GetUsersMessages()
+        {
+            throw new NotImplementedException();
+        }
+
         public bool ResponseToUserMassage(ResponseDTO response)
         {
             throw new NotImplementedException();

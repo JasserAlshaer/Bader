@@ -18,6 +18,8 @@ namespace Bader.Core.Repository
 
         public double GetDonationSummaation();
 
+        public WebStaticsDTO GetAllNumericInfo();
+
         public bool DonateToSite(SiteDonar siteDonar);
 
         public List<Charity> GetAllCharity();

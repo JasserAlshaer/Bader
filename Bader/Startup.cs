@@ -36,8 +36,16 @@ namespace Bader
             services.AddScoped<IAdminDoor, AdminGate>();
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<IAdminRepository, AdminRepository>();
-
-
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserGate, UserGate>();
+            services.AddScoped<ICharityRepository, CharityRepository>();
+            services.AddScoped<ICharityService, CharityService>();
+            services.AddScoped<ICharityGate, CharityGate>();
+            services.AddScoped<IAuthorizationGate, AuthorizationGate>();
+            services.AddScoped<IAuthorizationService, AuthorizationService>();
+            services.AddScoped<IAuthorizationRepository, AuthorizationRepository>();
+          
             services.AddCors(corsOptions =>
             {
                 corsOptions.AddPolicy("x",

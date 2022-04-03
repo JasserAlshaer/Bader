@@ -10,19 +10,19 @@ namespace Bader.Controllers
     [ApiController]
     public class AdminController : ControllerBase
     {
-        private readonly IAdminDoor adminDoor;
+        private readonly IAdminDoor _adminGate;
 
 
         public AdminController(IAdminDoor adminDoor)
         {
-            this.adminDoor = adminDoor;
+            this._adminGate = adminDoor;
         }
 
         [HttpGet]
         [Route("[action]")]
         public List<Subscriber> GetAllWebSiteSubscriberInformation()
         {
-            return adminDoor.GetAllWebSiteSubscriberInformation();
+            return _adminGate.GetAllWebSiteSubscriberInformation();
         }
 
     }
