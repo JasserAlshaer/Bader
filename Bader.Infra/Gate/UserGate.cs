@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Text;
 using Bader.Core.Data;
 using Bader.Core.DTO;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+
 namespace Bader.Infra.Gate
 {
     public class UserGate: IUserGate
@@ -14,24 +17,24 @@ namespace Bader.Infra.Gate
         {
             _service = service;
         }
+
+
+        //************************************************
         public WebStaticsDTO GetAllNumericInfo()
         {
             return _service.GetAllNumericInfo();
         }
         public bool DonateForSpecificDonationCampaign(Donor donor)
         {
-            throw new NotImplementedException();
+            return _service.DonateForSpecificDonationCampaign(donor);
         }
 
         public bool DonateToSite(SiteDonar siteDonar)
         {
-            throw new NotImplementedException();
+            return _service.DonateToSite(siteDonar);
         }
 
-        public bool DonateToWebSite(double amount)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public List<DonationCampaign> FetchDonationCampagin(DonationCampaingeRequestDTO fillter)
         {
@@ -43,54 +46,52 @@ namespace Bader.Infra.Gate
             return _service.FetchInitiative(fillter);
         }
 
-        public List<Charity> GetAllCharity()
+        public List<Charity> GetAllCharity( )
         {
-            throw new NotImplementedException();
+            return _service.GetAllCharity();
         }
 
         public Charity GetCharityById(int id)
         {
-            throw new NotImplementedException();
+            return _service.GetCharityById(id);
         }
 
         public List<Charity> GetCharityByName(string name)
         {
-            throw new NotImplementedException();
+            return _service.GetCharityByName(name);
         }
 
         public DonationCampaign GetDonationCampaignById(int id)
         {
-            throw new NotImplementedException();
+            return _service.GetDonationCampaignById(id);   
         }
 
         public double GetDonationSummaation()
         {
-            throw new NotImplementedException();
+            return _service.GetDonationSummaation();
         }
 
         public Initiative GetInitiativeById(int id)
         {
-            throw new NotImplementedException();
+            return _service.GetInitiativeById(id);
         }
 
         public Survey GetSurveyById(int id)
         {
-            throw new NotImplementedException();
+            return _service.GetSurveyById(id);
         }
 
         public bool InsertMassage(Message message)
         {
-            throw new NotImplementedException();
+
+            return _service.InsertMassage(message);
         }
 
-        public bool InsertMessageRecords(Message message)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public bool SubscribeTheSite(Subscriber subscriber)
         {
-            throw new NotImplementedException();
+            return _service.SubscribeTheSite(subscriber);
         }
     }
 }

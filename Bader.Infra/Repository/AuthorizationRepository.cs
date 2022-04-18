@@ -3,6 +3,7 @@ using Bader.Core.DTO;
 using Bader.Core.Repository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Bader.Infra.Repository
@@ -18,32 +19,106 @@ namespace Bader.Infra.Repository
 
         public bool InsertVeriricationCodeRecord(VerficationCode verificationCode)
         {
-            throw new NotImplementedException();
+            _context.Add(verificationCode);
+            _context.SaveChanges();
+            return true;
         }
 
         public LoginResultDTO LoginCredinital(LoginFillterDTO fillter)
         {
-            throw new NotImplementedException();
+            var auth = _context.Logins.Where(rec => rec.Email == fillter.Email && rec.Password == fillter.Password).FirstOrDefault();
+            if (auth == null)
+            {
+                return null;
+            }
+            else
+            {
+                if (auth.LastLogout < auth.LastLogin)
+                {
+                    return null;
+                }
+                else
+                {
+                    auth.LastLogin = DateTime.Now;
+                    _context.Update(auth);
+                    _context.SaveChanges();
+                    LoginResultDTO loginResultDTO = new LoginResultDTO();
+                    loginResultDTO.Email = auth.Email;
+                    loginResultDTO.roleID = auth.RoleId;
+                    loginResultDTO.AdminId= auth.CharityId;
+                    loginResultDTO.CharityID = auth.CharityId;
+                    return loginResultDTO;
+                  
+
+                }
+
+
+            }
         }
 
         public bool LogoutFromSystem(string email)
         {
-            throw new NotImplementedException();
+            var auth = _context.Logins.Where(rec => rec.Email == email).FirstOrDefault();
+            if (auth == null)
+            {
+                return false;
+            }
+            else
+            {
+                auth.LastLogout = DateTime.Now;
+                _context.Update(auth);
+                _context.SaveChanges();
+                return true;
+
+
+            }
         }
 
         public bool RegisterNewCharity(Charity charity, string email, string password)
         {
-            throw new NotImplementedException();
+            _context.Add(charity);
+            _context.SaveChanges();
+
+            Login login = new Login();
+            login.Email = email;
+            login.Password=password;
+            login.CharityId= _context.Charities.OrderByDescending(x => x.CharityId)
+                    .FirstOrDefault().CharityId;
+            login.RoleId = 2;
+            _context.Add(login);
+            _context.SaveChanges();
+            return true;
         }
 
         public bool ResponseToCharityAddingRequest(int response, int charityId)
         {
-            throw new NotImplementedException();
+            var charityInfo = _context.Charities.Where((rec) => rec.CharityId == charityId).SingleOrDefault();
+            if (charityInfo != null)
+            {
+                if (response == 1)
+                {
+                    charityInfo.IsActive = true;
+                    _context.Update(charityInfo);
+                    _context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    charityInfo.IsActive = false;
+                    _context.Update(charityInfo);
+                    _context.SaveChanges();
+                    return true;
+                }
+
+            }
+            return false;
         }
 
         public bool VerifiyUserEmail(VerficationCode verificationCode)
         {
-            throw new NotImplementedException();
+            _context.Add(verificationCode);
+            _context.SaveChanges();
+            return true;
         }
     }
 }

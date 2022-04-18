@@ -19,18 +19,19 @@ namespace Bader.Infra.Repository
         }
         public bool DonateForSpecificDonationCampaign(Donor donor)
         {
-            throw new NotImplementedException();
+            _context.Add(donor);
+            _context.SaveChanges();
+            return true;
         }
 
         public bool DonateToSite(SiteDonar siteDonar)
         {
-            throw new NotImplementedException();
+            _context.Add(siteDonar);
+            _context.SaveChanges();
+            return true;
         }
 
-        public bool DonateToWebSite(double amount)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public List<DonationCampaign> FetchDonationCampagin(DonationCampaingeRequestDTO fillter)
         {
@@ -44,32 +45,32 @@ namespace Bader.Infra.Repository
 
         public List<Charity> GetAllCharity()
         {
-            throw new NotImplementedException();
+            return _context.Charities.DefaultIfEmpty().ToList();
         }
 
         public Charity GetCharityById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Charities.Where(x=> x.CharityId==id).DefaultIfEmpty().SingleOrDefault();
         }
 
-        public List<Charity> GetCharityByName(string name)
+        public List<Charity> GetCharityByName(string name="")
         {
-            throw new NotImplementedException();
+            return _context.Charities.Where(item => item.Name.Contains(name)).ToList();
         }
 
         public DonationCampaign GetDonationCampaignById(int id)
         {
-            throw new NotImplementedException();
+            return _context.DonationCampaigns.Where(d=>d.DonationCampaignsId==id).DefaultIfEmpty().SingleOrDefault();
         }
 
         public double GetDonationSummaation()
         {
-            throw new NotImplementedException();
+            return _context.SiteDonars.Sum(x => x.Amount).Value;
         }
 
         public Initiative GetInitiativeById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Initiatives.Where(i => i.InitiativesId == id).DefaultIfEmpty().SingleOrDefault();
         }
 
         public WebStaticsDTO GetAllNumericInfo()
@@ -84,22 +85,20 @@ namespace Bader.Infra.Repository
 
         public Survey GetSurveyById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Surveys.Where(s => s.SurveyId == id).DefaultIfEmpty().SingleOrDefault();
         }
 
         public bool InsertMassage(Message message)
         {
-            throw new NotImplementedException();
+            _context.Add(message);
+            _context.SaveChanges();
+            return true;
         }
-
-        public bool InsertMessageRecords(Message message)
-        {
-            throw new NotImplementedException();
-        }
-
         public bool SubscribeTheSite(Subscriber subscriber)
         {
-            throw new NotImplementedException();
+            _context.Add(subscriber);
+            _context.SaveChanges();
+            return true;
         }
     }
 }

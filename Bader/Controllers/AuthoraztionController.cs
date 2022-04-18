@@ -1,6 +1,9 @@
-﻿using Bader.Core.Gate;
+﻿using Bader.Core.Data;
+using Bader.Core.DTO;
+using Bader.Core.Gate;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace Bader.Controllers
 {
@@ -14,6 +17,29 @@ namespace Bader.Controllers
         public AuthoraztionController(IAuthorizationGate gate)
         {
             this._Gate = gate;
+        }
+        [HttpPost]
+        public bool LogoutFromSystem(String email)
+        {
+            return _Gate.LogoutFromSystem(email);
+        }
+        [HttpPost]
+        public String LoginCredinital(LoginFillterDTO fillter)
+        {
+            return _Gate.LoginCredinital(fillter);
+        }
+
+        [HttpPost]
+        public bool RegisterNewCharity(Charity charity, String email, string password)
+        {
+            return _Gate.RegisterNewCharity(charity, email, password);
+        }
+
+
+        [HttpPost]
+        public bool ResponseToCharityAddingRequest(int response, int charityId)
+        {
+            return _Gate.ResponseToCharityAddingRequest(response, charityId);
         }
     }
 }

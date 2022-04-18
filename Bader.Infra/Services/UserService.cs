@@ -18,7 +18,7 @@ namespace Bader.Infra.Services
         }
         public bool DonateForSpecificDonationCampaign(Donor donor)
         {
-            throw new NotImplementedException();
+            return _repository.DonateForSpecificDonationCampaign(donor);
         }
 
         public WebStaticsDTO GetAllNumericInfo()
@@ -27,13 +27,10 @@ namespace Bader.Infra.Services
         }
         public bool DonateToSite(SiteDonar siteDonar)
         {
-            throw new NotImplementedException();
+            return _repository.DonateToSite(siteDonar);
         }
 
-        public bool DonateToWebSite(double amount)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public List<DonationCampaign> FetchDonationCampagin(DonationCampaingeRequestDTO fillter)
         {
@@ -47,52 +44,49 @@ namespace Bader.Infra.Services
 
         public List<Charity> GetAllCharity()
         {
-            throw new NotImplementedException();
+            return _repository.GetAllCharity();
         }
 
         public Charity GetCharityById(int id)
         {
-            throw new NotImplementedException();
+            return _repository.GetCharityById(id);
         }
 
         public List<Charity> GetCharityByName(string name)
         {
-            throw new NotImplementedException();
+            return _repository.GetCharityByName(name);
         }
 
         public DonationCampaign GetDonationCampaignById(int id)
         {
-            throw new NotImplementedException();
+            return _repository.GetDonationCampaignById(id);
         }
 
         public double GetDonationSummaation()
         {
-            throw new NotImplementedException();
+            return _repository.GetDonationSummaation();
         }
 
         public Initiative GetInitiativeById(int id)
         {
-            throw new NotImplementedException();
+            return _repository.GetInitiativeById(id);
         }
 
         public Survey GetSurveyById(int id)
         {
-            throw new NotImplementedException();
+            return _repository.GetSurveyById(id);
         }
 
         public bool InsertMassage(Message message)
         {
-            throw new NotImplementedException();
+            return _repository.InsertMassage(message);
         }
 
-        public bool InsertMessageRecords(Message message)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public bool SubscribeTheSite(Subscriber subscriber)
         {
-            throw new NotImplementedException();
+            return _repository.SubscribeTheSite(subscriber);
         }
     }
 }

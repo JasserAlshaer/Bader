@@ -9,9 +9,9 @@ namespace Bader.Core.Services
 {
     public  interface IUserService
     {
-        public bool DonateToWebSite(double amount);
+        //public bool DonateToWebSite(double amount);
 
-        public bool InsertMessageRecords(Message message);
+        //public bool InsertMessageRecords(Message message);
 
         public List<DonationCampaign> FetchDonationCampagin(DonationCampaingeRequestDTO fillter);
 

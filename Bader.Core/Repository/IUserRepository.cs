@@ -8,9 +8,9 @@ namespace Bader.Core.Repository
 {
     public  interface IUserRepository
     {
-        public bool DonateToWebSite(double amount);
+        //public bool DonateToWebSite(double amount);
 
-        public bool InsertMessageRecords(Message message);
+        //public bool InsertMessageRecords(Message message);
 
         public List<DonationCampaign> FetchDonationCampagin(DonationCampaingeRequestDTO fillter);
         

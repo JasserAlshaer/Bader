@@ -8,9 +8,9 @@ namespace Bader.Core.Services
 {
     public interface IUserGate
     {
-        public bool DonateToWebSite(double amount);
+        //public bool DonateToWebSite(double amount);
 
-        public bool InsertMessageRecords(Message message);
+        //public bool InsertMessageRecords(Message message);
 
         public List<DonationCampaign> FetchDonationCampagin(DonationCampaingeRequestDTO fillter);
 
@@ -22,7 +22,7 @@ namespace Bader.Core.Services
         public WebStaticsDTO GetAllNumericInfo();
         public bool DonateToSite(SiteDonar siteDonar);
 
-        public List<Charity> GetAllCharity();
+        public List<Charity> GetAllCharity( );
         public Charity GetCharityById(int id);
 
         public List<Charity> GetCharityByName(string name);

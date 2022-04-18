@@ -17,39 +17,25 @@ namespace Bader.Infra.Gate
         {
             _authorizationService = service;
         }
-        public bool InsertNewSubscriberRecord(Subscriber subscriber)
-        {
-            throw new NotImplementedException();
-        }
 
-        public bool InsertVeriricationCodeRecord(VerficationCode verificationCode)
+        public string LoginCredinital(LoginFillterDTO fillter)
         {
-            throw new NotImplementedException();
-        }
-
-        public LoginResultDTO LoginCredinital(LoginFillterDTO fillter)
-        {
-            throw new NotImplementedException();
+            return _authorizationService.LoginCredinital(fillter);
         }
 
         public bool LogoutFromSystem(string email)
         {
-            throw new NotImplementedException();
+            return _authorizationService.LogoutFromSystem(email);
         }
 
         public bool RegisterNewCharity(Charity charity, string email, string password)
         {
-            throw new NotImplementedException();
+            return _authorizationService.RegisterNewCharity(charity,email,password);
         }
 
         public bool ResponseToCharityAddingRequest(int response, int charityId)
         {
-            throw new NotImplementedException();
-        }
-
-        public bool VerifiyUserEmail(VerficationCode verificationCode)
-        {
-            throw new NotImplementedException();
+            return _authorizationService.ResponseToCharityAddingRequest(response, charityId);
         }
     }
 }
