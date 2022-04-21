@@ -18,47 +18,47 @@ namespace Bader.Infra.Gate
         }
         public List<Option> GetOptionsByQuestionId(int questionId)
         {
-            throw new NotImplementedException();
+            return _Service.GetOptionsByQuestionId(questionId);
         }
 
         public List<QuestionType> GetQuestionTypes()
         {
-            throw new NotImplementedException();
+            return _Service.GetQuestionTypes();
         }
 
         public List<Question> GetSurveyQuestionsBySurveyId(int surveyId)
         {
-            throw new NotImplementedException();
+            return _Service.GetSurveyQuestionsBySurveyId((int)surveyId);
         }
 
         public bool InsertDonationCampaign(DonationCampaign donationCampaign)
         {
-            throw new NotImplementedException();
+            return _Service.InsertDonationCampaign(donationCampaign);
         }
 
         public bool InsertNewInitiative(Initiative initiative)
         {
-            throw new NotImplementedException();
+            return _Service.InsertNewInitiative(initiative);
         }
 
         public bool InsertNewOption(Option option)
         {
-            throw new NotImplementedException();
+            return _Service.InsertNewOption(option);
         }
 
         public bool InsertNewQuestion(Question question)
         {
-            throw new NotImplementedException();
+            return _Service.InsertNewQuestion(question);
         }
 
         public bool InsertNewSurvey(Survey survey)
         {
-            throw new NotImplementedException();
+            return _Service.InsertNewSurvey(survey);
         }
 
-        public bool InsertUserAnswerForSurvey()
+        public bool InsertUserAnswerForSurvey(UserSurveyAnswer surveyAnswer)
         {
-            throw new NotImplementedException();
+            return _Service.InsertUserAnswerForSurvey(surveyAnswer);
         }
     }
 }

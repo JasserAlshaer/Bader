@@ -29,7 +29,7 @@ namespace Bader.Core.Services
 
 
 
-        public bool InsertUserAnswerForSurvey();
+        public bool InsertUserAnswerForSurvey(UserSurveyAnswer surveyAnswer);
 
 
 

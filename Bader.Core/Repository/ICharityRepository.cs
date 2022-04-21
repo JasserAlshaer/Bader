@@ -23,13 +23,7 @@ namespace Bader.Core.Repository
         public List<Question> GetSurveyQuestionsBySurveyId(int surveyId);
 
         public List<Option> GetOptionsByQuestionId(int questionId);
-
-
-
-
-
-
-        public bool InsertUserAnswerForSurvey();
+        public bool InsertUserAnswerForSurvey(UserSurveyAnswer userSurveyAnswer);
 
 
 

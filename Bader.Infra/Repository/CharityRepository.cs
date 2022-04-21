@@ -2,6 +2,7 @@
 using Bader.Core.Repository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Bader.Infra.Repository
@@ -16,47 +17,59 @@ namespace Bader.Infra.Repository
         }
         public List<Option> GetOptionsByQuestionId(int questionId)
         {
-            throw new NotImplementedException();
+            return _context.Options.Where(x=>x.QuestionId==questionId).ToList();
         }
 
         public List<QuestionType> GetQuestionTypes()
         {
-            throw new NotImplementedException();
+            return _context.QuestionTypes.ToList();
         }
 
         public List<Question> GetSurveyQuestionsBySurveyId(int surveyId)
         {
-            throw new NotImplementedException();
+            return _context.Questions.Where(x=>x.SuervyId==surveyId).ToList();
         }
 
         public bool InsertDonationCampaign(DonationCampaign donationCampaign)
         {
-            throw new NotImplementedException();
+            _context.Add(donationCampaign);
+            _context.SaveChanges();
+            return true;
         }
 
         public bool InsertNewInitiative(Initiative initiative)
         {
-            throw new NotImplementedException();
+            _context.Add(initiative);
+            _context.SaveChanges();
+            return true;
         }
 
         public bool InsertNewOption(Option option)
         {
-            throw new NotImplementedException();
+            _context.Add(option);
+            _context.SaveChanges();
+            return true;
         }
 
         public bool InsertNewQuestion(Question question)
         {
-            throw new NotImplementedException();
+            _context.Add(question);
+            _context.SaveChanges();
+            return true;
         }
 
         public bool InsertNewSurvey(Survey survey)
         {
-            throw new NotImplementedException();
+            _context.Add(survey);
+            _context.SaveChanges();
+            return true;
         }
 
-        public bool InsertUserAnswerForSurvey()
+        public bool InsertUserAnswerForSurvey(UserSurveyAnswer userSurveyAnswer)
         {
-            throw new NotImplementedException();
+            _context.Add(userSurveyAnswer);
+            _context.SaveChanges();
+            return true;
         }
     }
 }

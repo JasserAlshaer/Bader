@@ -18,47 +18,47 @@ namespace Bader.Infra.Services
         }
         public List<Option> GetOptionsByQuestionId(int questionId)
         {
-            throw new NotImplementedException();
+           return _repos.GetOptionsByQuestionId(questionId);
         }
 
         public List<QuestionType> GetQuestionTypes()
         {
-            throw new NotImplementedException();
+           return _repos.GetQuestionTypes();
         }
 
         public List<Question> GetSurveyQuestionsBySurveyId(int surveyId)
         {
-            throw new NotImplementedException();
+           return _repos.GetSurveyQuestionsBySurveyId((int)surveyId);   
         }
 
         public bool InsertDonationCampaign(DonationCampaign donationCampaign)
         {
-            throw new NotImplementedException();
+           return _repos.InsertDonationCampaign(donationCampaign);
         }
 
         public bool InsertNewInitiative(Initiative initiative)
         {
-            throw new NotImplementedException();
+           return _repos.InsertNewInitiative(initiative);
         }
 
         public bool InsertNewOption(Option option)
         {
-            throw new NotImplementedException();
+           return _repos.InsertNewOption(option);
         }
 
         public bool InsertNewQuestion(Question question)
         {
-            throw new NotImplementedException();
+           return _repos.InsertNewQuestion(question);
         }
 
         public bool InsertNewSurvey(Survey survey)
         {
-            throw new NotImplementedException();
+            return _repos.InsertNewSurvey(survey);
         }
 
-        public bool InsertUserAnswerForSurvey()
+        public bool InsertUserAnswerForSurvey(UserSurveyAnswer surveyAnswer)
         {
-            throw new NotImplementedException();
+            return _repos.InsertUserAnswerForSurvey(surveyAnswer);
         }
     }
 }

@@ -7,7 +7,10 @@ namespace Bader.Core.Data
 {
     public partial class DonationCampaign
     {
-  
+        public DonationCampaign()
+        {
+            Donors = new HashSet<Donor>();
+        }
 
         public int DonationCampaignsId { get; set; }
         public double? TargetAmount { get; set; }

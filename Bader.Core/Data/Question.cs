@@ -7,6 +7,11 @@ namespace Bader.Core.Data
 {
     public partial class Question
     {
+        public Question()
+        {
+            UserSurveyAnswers = new HashSet<UserSurveyAnswer>();
+        }
+
         public int QuestionId { get; set; }
         public string Title { get; set; }
         public int? QuestionTypeId { get; set; }
@@ -15,5 +20,6 @@ namespace Bader.Core.Data
 
         public virtual QuestionType QuestionType { get; set; }
         public virtual Survey Suervy { get; set; }
+        public virtual ICollection<UserSurveyAnswer> UserSurveyAnswers { get; set; }
     }
 }

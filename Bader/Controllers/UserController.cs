@@ -20,103 +20,101 @@ namespace Bader.Controllers
             _gate = gate;
         }
 
-
-        enum RoleType
-        {
-            NoOne, Admin, Employee
-        }
-
-
-        public int DecodeToken(String tokenString)
-        {
-
-            String toke = "Bearer " + tokenString;
-
-            var jwtEncodedString = toke.Substring(7);
-
-            var token = new JwtSecurityToken(jwtEncodedString: jwtEncodedString);
-
-            int roleType = Int32.Parse((token.Claims.First(c => c.Type == "role").Value.ToString()));
-            if (roleType == 1 && token.ValidTo >= DateTime.Now)
-            {
-
-                return (int)RoleType.Admin;
-            }
-            else if (roleType == 2 && token.ValidTo >= DateTime.Now)
-            {
-
-                return (int)RoleType.Employee;
-            }
-            else
-            {
-
-
-                return (int)RoleType.NoOne;
-            }
-        }
+      
 
 
         [HttpPost]
         [Route("[action]")]
-        public IActionResult FetchDonationCampagin([FromBody]DonationCampaingeRequestDTO fillter, [FromHeader] String token)
+        public IActionResult FetchDonationCampagin([FromBody]DonationCampaingeRequestDTO fillter)
         {
-            int result = DecodeToken(token);
 
-            if (result == 1)
-            {
 
                 return Ok(_gate.FetchDonationCampagin(fillter));
-            }
-            else if (result == 2)
-            {
-                return Unauthorized();
-            }
-            else
-            {
-                return BadRequest();
-            }
+          
         }
         [HttpPost]
         [Route("[action]")]
-        public IActionResult FetchInitiative([FromBody] InitiativeDTO fillter, [FromHeader] String token)
+        public IActionResult FetchInitiative([FromBody] InitiativeDTO fillter)
         {
-            int result = DecodeToken(token);
+            
 
-            if (result == 1)
-            {
+      
 
                 return Ok(_gate.FetchInitiative(fillter));
-            }
-            else if (result == 2)
-            {
-                return Unauthorized();
-            }
-            else
-            {
-                return BadRequest();
-            }
+    
             
         }
         [HttpGet]
         [Route("[action]")]
-        public IActionResult GetAllNumericInfo([FromHeader] String token)
+        public IActionResult GetAllNumericInfo()
         {
-            int result = DecodeToken(token);
-
-            if (result == 1)
-            {
+        
 
                 return Ok(_gate.GetAllNumericInfo());
-            }
-            else if (result == 2)
-            {
-                return Unauthorized();
-            }
-            else
-            {
-                return BadRequest();
-            }
+          
+   
          
+        }
+        [HttpGet]
+        [Route("[action]")]
+        public double GetDonationSummaation() { 
+          return _gate.GetDonationSummaation();
+        }
+        [HttpPost]
+        [Route("[action]")]
+        public bool DonateToSite([FromBody]SiteDonar siteDonar) {
+            return _gate.DonateToSite(siteDonar);
+          }
+        [HttpGet]
+        [Route("[action]")]
+        public List<Charity> GetAllCharity() {
+            return _gate.GetAllCharity();
+        }
+        [HttpGet]
+        [Route("[action]")]
+        public Charity GetCharityById(int id){
+            return _gate.GetCharityById(id);
+        }
+        [HttpGet]
+        [Route("[action]")]
+        public List<Charity> GetCharityByName([FromQuery] string name){
+            return _gate.GetCharityByName(name);
+        }
+        [HttpGet]
+        [Route("[action]")]
+        public Initiative GetInitiativeById([FromQuery] int id){
+            return _gate.GetInitiativeById(id);
+        }
+        [HttpGet]
+        [Route("[action]")]
+        public DonationCampaign GetDonationCampaignById([FromQuery] int id){
+            return _gate.GetDonationCampaignById((int)id);
+        }
+        [HttpPost]
+        [Route("[action]")]
+        public bool DonateForSpecificDonationCampaign([FromBody] Donor donor){
+            return _gate.DonateForSpecificDonationCampaign(donor);
+        }
+        [HttpGet]
+        [Route("[action]")]
+        public Survey GetSurveyById([FromQuery] int id){
+
+            return _gate.GetSurveyById((int)id);
+        }
+        [HttpPost]
+        [Route("[action]")]
+        public bool SubscribeTheSite([FromBody] Subscriber subscriber){
+            return _gate.SubscribeTheSite(subscriber);
+
+
+        }
+        [HttpPost]
+        [Route("[action]")]
+        public bool InsertMassage([FromBody] Message message){
+
+            return _gate.InsertMassage(message);
+
+
         }
 
 

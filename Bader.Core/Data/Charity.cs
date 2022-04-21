@@ -7,7 +7,14 @@ namespace Bader.Core.Data
 {
     public partial class Charity
     {
-
+        public Charity()
+        {
+            Addresses = new HashSet<Address>();
+            DonationCampaigns = new HashSet<DonationCampaign>();
+            Links = new HashSet<Link>();
+            Logins = new HashSet<Login>();
+            Services = new HashSet<Service>();
+        }
 
         public int CharityId { get; set; }
         public string Name { get; set; }
