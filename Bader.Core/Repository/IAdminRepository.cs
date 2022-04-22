@@ -15,8 +15,5 @@ namespace Bader.Core.Repository
         public bool ResponseToUserMassage(ResponseDTO response);
 
         public WebStaticsDTO GetAllWebSiteStatics();
-
-
-        public List<Message> GetUsersMessages();
     }
 }

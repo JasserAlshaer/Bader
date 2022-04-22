@@ -20,12 +20,12 @@ namespace Bader.Infra.Services
         }
         public List<Message> GetAllUserMessages()
         {
-            throw new NotImplementedException();
+           return adminRepository.GetAllUserMessages();
         }
 
         public WebStaticsDTO GetAllWebSiteStatics()
         {
-            throw new NotImplementedException();
+            return adminRepository.GetAllWebSiteStatics();
         }
 
         public List<Subscriber> GetAllWebSiteSubscriberInformation()
@@ -35,7 +35,7 @@ namespace Bader.Infra.Services
 
         public bool ResponseToUserMassage(ResponseDTO response)
         {
-            throw new NotImplementedException();
+            return adminRepository.ResponseToUserMassage(response);
         }
     }
 }

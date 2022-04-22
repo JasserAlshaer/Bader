@@ -18,12 +18,12 @@ namespace Bader.Infra.Gate
         }
         public List<Message> GetAllUserMessages()
         {
-            throw new NotImplementedException();
+            return adminService.GetAllUserMessages();
         }
 
         public WebStaticsDTO GetAllWebSiteStatics()
         {
-            throw new NotImplementedException();
+            return adminService.GetAllWebSiteStatics();
         }
 
         public List<Subscriber> GetAllWebSiteSubscriberInformation()
@@ -33,7 +33,7 @@ namespace Bader.Infra.Gate
 
         public bool ResponseToUserMassage(ResponseDTO response)
         {
-            throw new NotImplementedException();
+            return adminService.ResponseToUserMassage(response);
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using Bader.Core.DTO;
 
 namespace Bader.Controllers
 {
@@ -59,6 +60,22 @@ namespace Bader.Controllers
         public List<Subscriber> GetAllWebSiteSubscriberInformation()
         {
             return _adminGate.GetAllWebSiteSubscriberInformation();
+        }
+
+
+        public List<Message> GetAllUserMessages()
+        {
+            return _adminGate.GetAllUserMessages();
+        }
+
+        public WebStaticsDTO GetAllWebSiteStatics()
+        {
+            return _adminGate.GetAllWebSiteStatics();
+        }
+
+        public bool ResponseToUserMassage(ResponseDTO response)
+        {
+            return _adminGate.ResponseToUserMassage(response);
         }
 
     }

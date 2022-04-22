@@ -21,12 +21,17 @@ namespace Bader.Infra.Repository
 
         public List<Message> GetAllUserMessages()
         {
-            throw new NotImplementedException();
+            return _context.Messages.ToList(); 
         }
 
         public WebStaticsDTO GetAllWebSiteStatics()
         {
-            throw new NotImplementedException();
+            WebStaticsDTO webStaticsDTO = new WebStaticsDTO();
+            webStaticsDTO.SummationOfInitiatives = _context.Initiatives.Count();
+            webStaticsDTO.SummationOfSubscriber = _context.Subscribers.Count();
+            webStaticsDTO.SummationOfDonationCampainge = _context.DonationCampaigns.Count();
+            webStaticsDTO.SummationOfDonations = 0;
+            return webStaticsDTO;
         }
 
         public List<Subscriber> GetAllWebSiteSubscriberInformation()
@@ -34,13 +39,10 @@ namespace Bader.Infra.Repository
             return _context.Subscribers.ToList();
         }
 
-        public List<Message> GetUsersMessages()
-        {
-            throw new NotImplementedException();
-        }
 
         public bool ResponseToUserMassage(ResponseDTO response)
         {
+            //Email Sender Code
             throw new NotImplementedException();
         }
     }
