@@ -57,9 +57,20 @@ namespace Bader.Controllers
 
         [HttpGet]
         [Route("[action]")]
-        public List<Subscriber> GetAllWebSiteSubscriberInformation()
+        public IActionResult GetAllWebSiteSubscriberInformation([FromHeader]string token)
+
         {
-            return _adminGate.GetAllWebSiteSubscriberInformation();
+            int code=DecodeToken(token);
+            if(code==(int)RoleType.Admin)
+            {
+                return Ok(_adminGate.GetAllWebSiteSubscriberInformation());
+            }
+            else
+            {
+                return Unauthorized();
+            }
+
+          
         }
 
 

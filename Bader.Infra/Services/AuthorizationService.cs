@@ -42,7 +42,7 @@ namespace Bader.Infra.Services
                         new Claim("ChartiyId",result.CharityID+""),
                         new Claim("AdminId",result.AdminId+"")
                     }),
-                    Expires = DateTime.Now.AddDays(1),
+                    Expires = DateTime.Now.AddHours(1),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey)
                     , SecurityAlgorithms.HmacSha256Signature)
 
