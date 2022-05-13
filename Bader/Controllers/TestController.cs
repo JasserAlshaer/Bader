@@ -10,9 +10,9 @@ namespace Bader.Controllers
     [ApiController]
     public class TestController : ControllerBase
     {
-        private readonly AnsamContext SystemContext;
+        private readonly BaderContext SystemContext;
 
-        public TestController(AnsamContext currentContext)
+        public TestController(BaderContext currentContext)
         {
             SystemContext = currentContext;
         }

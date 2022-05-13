@@ -32,7 +32,7 @@ namespace Bader
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<AnsamContext>();
+            services.AddDbContext<BaderContext>();
             services.AddScoped<IAdminDoor, AdminGate>();
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<IAdminRepository, AdminRepository>();

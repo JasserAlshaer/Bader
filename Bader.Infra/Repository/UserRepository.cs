@@ -11,9 +11,9 @@ namespace Bader.Infra.Repository
     public class UserRepository : IUserRepository
     {
 
-        private readonly AnsamContext _context;
+        private readonly BaderContext _context;
 
-        public UserRepository(AnsamContext context)
+        public UserRepository(BaderContext context)
         {
             _context = context;
         }

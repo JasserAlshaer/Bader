@@ -11,9 +11,9 @@ namespace Bader.Infra.Repository
     public class AdminRepository : IAdminRepository
     {
 
-        private readonly AnsamContext _context;
+        private readonly BaderContext _context;
 
-        public AdminRepository(AnsamContext context)
+        public AdminRepository(BaderContext context)
         {
             _context = context;
         }

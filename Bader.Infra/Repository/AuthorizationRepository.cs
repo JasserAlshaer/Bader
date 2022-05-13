@@ -10,9 +10,9 @@ namespace Bader.Infra.Repository
 {
     public class AuthorizationRepository : IAuthorizationRepository
     {
-        private readonly AnsamContext _context;
+        private readonly BaderContext _context;
 
-        public AuthorizationRepository(AnsamContext context)
+        public AuthorizationRepository(BaderContext context)
         {
             _context = context;
         }

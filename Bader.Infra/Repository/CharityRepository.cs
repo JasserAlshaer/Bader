@@ -9,9 +9,9 @@ namespace Bader.Infra.Repository
 {
     public class CharityRepository : ICharityRepository
     {
-        private readonly AnsamContext _context;
+        private readonly BaderContext _context;
 
-        public CharityRepository(AnsamContext context)
+        public CharityRepository(BaderContext context)
         {
             _context = context;
         }
