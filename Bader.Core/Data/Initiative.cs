@@ -7,6 +7,11 @@ namespace Bader.Core.Data
 {
     public partial class Initiative
     {
+        public Initiative()
+        {
+            UserSuervies = new HashSet<UserSuervy>();
+        }
+
         public int InitiativesId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
@@ -16,5 +21,7 @@ namespace Bader.Core.Data
         public string ScheduleType { get; set; }
         public int? Seats { get; set; }
         public int? SurveyId { get; set; }
+
+        public virtual ICollection<UserSuervy> UserSuervies { get; set; }
     }
 }

@@ -300,9 +300,7 @@ namespace Bader.Core.Data
 
                 entity.Property(e => e.QuestionTypeId).HasColumnName("QuestionTypeID");
 
-                entity.Property(e => e.SuervyId)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("SuervyID");
+                entity.Property(e => e.SurveyId).HasColumnName("SurveyID");
 
                 entity.Property(e => e.Title)
                     .HasMaxLength(500)
@@ -313,11 +311,10 @@ namespace Bader.Core.Data
                     .HasForeignKey(d => d.QuestionTypeId)
                     .HasConstraintName("FK_Question_QuestionType");
 
-                entity.HasOne(d => d.Suervy)
+                entity.HasOne(d => d.Survey)
                     .WithMany(p => p.Questions)
-                    .HasForeignKey(d => d.SuervyId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Question_Survey");
+                    .HasForeignKey(d => d.SurveyId)
+                    .HasConstraintName("FK_Question_Survey1");
             });
 
             modelBuilder.Entity<QuestionType>(entity =>
@@ -415,44 +412,49 @@ namespace Bader.Core.Data
 
                 entity.Property(e => e.UserSuervyId).HasColumnName("UserSuervyID");
 
+                entity.Property(e => e.Age)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Date).HasColumnType("datetime");
 
                 entity.Property(e => e.Email)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.SuervyId).HasColumnName("SuervyID");
+                entity.Property(e => e.Name)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
 
-                entity.HasOne(d => d.Suervy)
+                entity.Property(e => e.PhoneNumber)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Initiatives)
                     .WithMany(p => p.UserSuervies)
-                    .HasForeignKey(d => d.SuervyId)
-                    .HasConstraintName("FK_UserSuervy_Survey");
+                    .HasForeignKey(d => d.InitiativesId)
+                    .HasConstraintName("FK_UserSuervy_Initiatives");
             });
 
             modelBuilder.Entity<UserSurveyAnswer>(entity =>
             {
                 entity.HasKey(e => e.UserSurveyAnswersId);
 
-                entity.Property(e => e.UserSurveyAnswersId).HasColumnName("UserSurveyAnswersID");
+                entity.ToTable("UserSurveyAnswer");
 
                 entity.Property(e => e.Answer)
-                    .HasMaxLength(350)
+                    .HasMaxLength(500)
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.Option)
                     .WithMany(p => p.UserSurveyAnswers)
                     .HasForeignKey(d => d.OptionId)
-                    .HasConstraintName("FK_UserSurveyAnswers_Option");
+                    .HasConstraintName("FK_UserSurveyAnswer_Option");
 
                 entity.HasOne(d => d.Question)
                     .WithMany(p => p.UserSurveyAnswers)
                     .HasForeignKey(d => d.QuestionId)
-                    .HasConstraintName("FK_UserSurveyAnswers_Question");
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.UserSurveyAnswers)
-                    .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK_UserSurveyAnswers_UserSuervy");
+                    .HasConstraintName("FK_UserSurveyAnswer_Question");
             });
 
             modelBuilder.Entity<VerficatioCode>(entity =>

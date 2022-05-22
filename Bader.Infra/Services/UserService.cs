@@ -91,7 +91,7 @@ namespace Bader.Infra.Services
 
         public bool InsertUserAnswerForSurvey(UserSurveyAnswer surveyAnswer)
         {
-            return _repos.InsertUserAnswerForSurvey(surveyAnswer);
+            return _repository.InsertUserAnswerForSurvey(surveyAnswer);
         }
     }
 }

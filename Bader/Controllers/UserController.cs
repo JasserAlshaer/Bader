@@ -103,7 +103,7 @@ namespace Bader.Controllers
         [Route("[action]")]
         public bool InsertUserAnswerForSurvey(UserSurveyAnswer surveyAnswer)
         {
-            return _Gate.InsertUserAnswerForSurvey(surveyAnswer);
+            return _gate.InsertUserAnswerForSurvey(surveyAnswer);
         }
 
 
