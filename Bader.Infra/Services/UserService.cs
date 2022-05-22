@@ -89,7 +89,7 @@ namespace Bader.Infra.Services
             return _repository.SubscribeTheSite(subscriber);
         }
 
-        public bool InsertUserAnswerForSurvey(UserSurveyAnswer surveyAnswer)
+        public bool InsertUserAnswerForSurvey(UserSuervy surveyAnswer)
         {
             return _repository.InsertUserAnswerForSurvey(surveyAnswer);
         }

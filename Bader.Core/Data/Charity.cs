@@ -22,6 +22,8 @@ namespace Bader.Core.Data
         public string ProfileImagePath { get; set; }
         public string PreviewVideoPath { get; set; }
         public bool? IsActive { get; set; }
+        public string Description { get; set; }
+        public DateTime? DateofEstablishment { get; set; }
 
         public virtual ICollection<Address> Addresses { get; set; }
         public virtual ICollection<DonationCampaign> DonationCampaigns { get; set; }

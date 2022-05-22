@@ -91,6 +91,10 @@ namespace Bader.Core.Data
 
                 entity.Property(e => e.CharityId).HasColumnName("CharityID");
 
+                entity.Property(e => e.DateofEstablishment).HasColumnType("date");
+
+                entity.Property(e => e.Description).IsUnicode(false);
+
                 entity.Property(e => e.Name)
                     .HasMaxLength(100)
                     .IsUnicode(false);

@@ -27,7 +27,7 @@ namespace Bader.Infra.Repository
 
         public List<Question> GetSurveyQuestionsBySurveyId(int surveyId)
         {
-            return _context.Questions.Where(x=>x.SuervyId==surveyId).ToList();
+            return _context.Questions.Where(x=>x.SurveyId==surveyId).ToList();
         }
 
         public bool InsertDonationCampaign(DonationCampaign donationCampaign)

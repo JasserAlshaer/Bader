@@ -157,7 +157,7 @@ namespace Bader.Infra.Repository
         }
 
 
-        public bool InsertUserAnswerForSurvey(UserSurveyAnswer userSurveyAnswer)
+        public bool InsertUserAnswerForSurvey(UserSuervy userSurveyAnswer)
         {
             _context.Add(userSurveyAnswer);
             _context.SaveChanges();

@@ -39,7 +39,7 @@ namespace Bader.Core.Repository
 
         public bool InsertMassage(Message message);
 
-        public bool InsertUserAnswerForSurvey(UserSurveyAnswer userSurveyAnswer);
+        public bool InsertUserAnswerForSurvey(UserSuervy userSurveyAnswer);
 
 
     }
