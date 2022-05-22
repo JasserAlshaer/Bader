@@ -20,7 +20,7 @@ namespace Bader.Core.Repository
 
         public WebStaticsDTO GetAllNumericInfo();
 
-        public bool DonateToSite(SiteDonar siteDonar);
+        public bool DonateToSite(DonationDTO siteDonar);
 
         public List<Charity> GetAllCharity();
         public Charity GetCharityById(int id);
@@ -35,7 +35,7 @@ namespace Bader.Core.Repository
 
         public Survey GetSurveyById(int id);
 
-        public bool SubscribeTheSite(Subscriber subscriber);
+        public bool SubscribeTheSite(SubscriberDto subscriber);
 
         public bool InsertMassage(Message message);
         

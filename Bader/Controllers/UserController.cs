@@ -62,7 +62,7 @@ namespace Bader.Controllers
         }
         [HttpPost]
         [Route("[action]")]
-        public bool DonateToSite([FromBody]SiteDonar siteDonar) {
+        public bool DonateToSite([FromBody] DonationDTO siteDonar) {
             return _gate.DonateToSite(siteDonar);
           }
         [HttpGet]
@@ -103,11 +103,14 @@ namespace Bader.Controllers
         }
         [HttpPost]
         [Route("[action]")]
-        public bool SubscribeTheSite([FromBody] Subscriber subscriber){
+        public bool SubscribeTheSite([FromBody] SubscriberDto subscriber){
+
+
             return _gate.SubscribeTheSite(subscriber);
 
 
         }
+
         [HttpPost]
         [Route("[action]")]
         public bool InsertMassage([FromBody] Message message){

@@ -29,7 +29,7 @@ namespace Bader.Infra.Gate
             return _service.DonateForSpecificDonationCampaign(donor);
         }
 
-        public bool DonateToSite(SiteDonar siteDonar)
+        public bool DonateToSite(DonationDTO siteDonar)
         {
             return _service.DonateToSite(siteDonar);
         }
@@ -89,7 +89,7 @@ namespace Bader.Infra.Gate
 
 
 
-        public bool SubscribeTheSite(Subscriber subscriber)
+        public bool SubscribeTheSite(SubscriberDto subscriber)
         {
             return _service.SubscribeTheSite(subscriber);
         }

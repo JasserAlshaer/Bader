@@ -25,7 +25,7 @@ namespace Bader.Infra.Services
         {
             return _repository.GetAllNumericInfo();
         }
-        public bool DonateToSite(SiteDonar siteDonar)
+        public bool DonateToSite(DonationDTO siteDonar)
         {
             return _repository.DonateToSite(siteDonar);
         }
@@ -84,7 +84,7 @@ namespace Bader.Infra.Services
 
 
 
-        public bool SubscribeTheSite(Subscriber subscriber)
+        public bool SubscribeTheSite(SubscriberDto subscriber)
         {
             return _repository.SubscribeTheSite(subscriber);
         }

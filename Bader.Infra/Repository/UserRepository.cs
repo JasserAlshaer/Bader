@@ -24,11 +24,38 @@ namespace Bader.Infra.Repository
             return true;
         }
 
-        public bool DonateToSite(SiteDonar siteDonar)
+        public bool DonateToSite(DonationDTO siteDonar)
         {
-            _context.Add(siteDonar);
-            _context.SaveChanges();
-            return true;
+            var card = _context.PaymentMethods.Where(x => x.CardNumber == siteDonar.CardNumber
+              && x.Cvv2 == siteDonar.Cvv2 && x.Balance >= siteDonar.Amount && x.ExpireDate >= siteDonar.ExpireDate).SingleOrDefault();
+            if (card != null)
+            {
+                if (siteDonar.DonationCampaignsId == 0 || siteDonar.DonationCampaignsId == null)
+                {
+                    SiteDonar site = new SiteDonar();
+                    site.Email=siteDonar.Email;
+                    site.Amount=siteDonar.Amount;
+                    _context.Add(siteDonar);
+                    _context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    Donor donor=new Donor();
+                    donor.DonationCampaignsId=siteDonar.DonationCampaignsId;
+                    donor.Amount=siteDonar.Amount;
+                    donor.Name=siteDonar.Name;
+                    _context.Add(donor);
+                    _context.SaveChanges();
+                    return true;
+                }
+               
+            }
+            else
+            {
+                return false;
+            }
+           
         }
 
 
@@ -94,11 +121,24 @@ namespace Bader.Infra.Repository
             _context.SaveChanges();
             return true;
         }
-        public bool SubscribeTheSite(Subscriber subscriber)
+        public bool SubscribeTheSite(SubscriberDto subscriber)
         {
-            _context.Add(subscriber);
-            _context.SaveChanges();
-            return true;
+            var code=_context.VerficatioCodes.Where(s => s.Code == subscriber.Code && s.Email==subscriber.Email).SingleOrDefault();
+            if(code == null)
+            {
+                return false;
+            }
+            else
+            {
+                Subscriber subscriber1 = new Subscriber();
+                subscriber1.Email = subscriber.Email;
+                subscriber1.Name = subscriber.Name;
+                _context.Add(subscriber1);
+                _context.SaveChanges();
+                return true;
+            }
+           
         }
+
     }
 }
