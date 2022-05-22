@@ -30,9 +30,15 @@ namespace Bader.Controllers
         }
 
         [HttpPost]
-        public bool RegisterNewCharity(Charity charity, String email, string password)
+        public bool RegisterNewCharity(CharityRegisterDTO charity)
+            
         {
-            return _Gate.RegisterNewCharity(charity, email, password);
+            Charity charity1 = new Charity();
+            charity1.Name = charity.Name;
+            charity1.IsActive = charity.IsActive;
+            charity1.Phone = charity1.Phone;    
+
+            return _Gate.RegisterNewCharity(charity1, charity.email, charity.password);
         }
 
 
