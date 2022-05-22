@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Bader.Infra.Repository
 {
@@ -27,14 +28,14 @@ namespace Bader.Infra.Repository
         public bool DonateToSite(DonationDTO siteDonar)
         {
             var card = _context.PaymentMethods.Where(x => x.CardNumber == siteDonar.CardNumber
-              && x.Cvv2 == siteDonar.Cvv2 && x.Balance >= siteDonar.Amount && x.ExpireDate >= siteDonar.ExpireDate).SingleOrDefault();
+              && x.Cvv2 == siteDonar.Cvv2 && x.Balance >= Convert.ToDouble(siteDonar.Amount) && x.ExpireDate <= siteDonar.ExpireDate).SingleOrDefault();
             if (card != null)
             {
-                if (siteDonar.DonationCampaignsId == 0 || siteDonar.DonationCampaignsId == null)
+                if (Convert.ToInt32(siteDonar.DonationCampaignsId) == 0)
                 {
                     SiteDonar site = new SiteDonar();
                     site.Email=siteDonar.Email;
-                    site.Amount=siteDonar.Amount;
+                    site.Amount= Convert.ToDouble(siteDonar.Amount);
                     _context.Add(siteDonar);
                     _context.SaveChanges();
                     return true;
@@ -42,8 +43,8 @@ namespace Bader.Infra.Repository
                 else
                 {
                     Donor donor=new Donor();
-                    donor.DonationCampaignsId=siteDonar.DonationCampaignsId;
-                    donor.Amount=siteDonar.Amount;
+                    donor.DonationCampaignsId=Convert.ToInt32(siteDonar.DonationCampaignsId);
+                    donor.Amount= Convert.ToDouble(siteDonar.Amount);
                     donor.Name=siteDonar.Name;
                     _context.Add(donor);
                     _context.SaveChanges();
@@ -60,9 +61,24 @@ namespace Bader.Infra.Repository
 
 
 
-        public List<DonationCampaign> FetchDonationCampagin(DonationCampaingeRequestDTO fillter)
-        {
-            return _context.DonationCampaigns.DefaultIfEmpty().ToList();
+        public  List<DonationCampaignsResultDTO>FetchDonationCampagin(DonationCampaingeRequestDTO fillter)
+        {   
+            List<DonationCampaignsResultDTO> result = new List<DonationCampaignsResultDTO>();
+            List<DonationCampaign> campaigns = _context.DonationCampaigns.ToList();
+
+             foreach(DonationCampaign campaign in campaigns)
+            {
+                DonationCampaignsResultDTO opt=new DonationCampaignsResultDTO();
+                opt.DonationCampaignsId=campaign.DonationCampaignsId;
+                opt.StartAt=campaign.StartAt;
+                opt.EndAt=campaign.EndAt;
+                opt.TargetAmount=campaign.TargetAmount;
+                opt.CharityId=campaign.CharityId;
+                opt.Description=campaign.Description;
+                opt.Sum=_context.Donors.Where(y => y.DonationCampaignsId == campaign.DonationCampaignsId).Sum(x => x.Amount).Value;
+                result.Add(opt);
+              }
+              return result;
         }
 
         public List<Initiative> FetchInitiative(InitiativeDTO fillter)
@@ -138,6 +154,14 @@ namespace Bader.Infra.Repository
                 return true;
             }
            
+        }
+
+
+        public bool InsertUserAnswerForSurvey(UserSurveyAnswer userSurveyAnswer)
+        {
+            _context.Add(userSurveyAnswer);
+            _context.SaveChanges();
+            return true;
         }
 
     }

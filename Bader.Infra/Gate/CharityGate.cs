@@ -56,9 +56,6 @@ namespace Bader.Infra.Gate
             return _Service.InsertNewSurvey(survey);
         }
 
-        public bool InsertUserAnswerForSurvey(UserSurveyAnswer surveyAnswer)
-        {
-            return _Service.InsertUserAnswerForSurvey(surveyAnswer);
-        }
+      
     }
 }

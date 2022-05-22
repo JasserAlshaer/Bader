@@ -14,10 +14,12 @@ namespace Bader.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        private readonly BaderContext _context;
         public readonly IUserGate _gate;
-       public UserController(IUserGate gate)
+       public UserController(IUserGate gate, BaderContext context)
         {
             _gate = gate;
+            this._context = context;
         }
 
       
@@ -29,7 +31,7 @@ namespace Bader.Controllers
         {
 
 
-                return Ok(_gate.FetchDonationCampagin(fillter));
+           return Ok(_gate.FetchDonationCampagin(fillter));
           
         }
         [HttpPost]
@@ -55,11 +57,7 @@ namespace Bader.Controllers
    
          
         }
-        [HttpGet]
-        [Route("[action]")]
-        public double GetDonationSummaation() { 
-          return _gate.GetDonationSummaation();
-        }
+        
         [HttpPost]
         [Route("[action]")]
         public bool DonateToSite([FromBody] DonationDTO siteDonar) {
@@ -80,27 +78,7 @@ namespace Bader.Controllers
         public List<Charity> GetCharityByName([FromQuery] string name){
             return _gate.GetCharityByName(name);
         }
-        [HttpGet]
-        [Route("[action]")]
-        public Initiative GetInitiativeById([FromQuery] int id){
-            return _gate.GetInitiativeById(id);
-        }
-        [HttpGet]
-        [Route("[action]")]
-        public DonationCampaign GetDonationCampaignById([FromQuery] int id){
-            return _gate.GetDonationCampaignById((int)id);
-        }
-        [HttpPost]
-        [Route("[action]")]
-        public bool DonateForSpecificDonationCampaign([FromBody] Donor donor){
-            return _gate.DonateForSpecificDonationCampaign(donor);
-        }
-        [HttpGet]
-        [Route("[action]")]
-        public Survey GetSurveyById([FromQuery] int id){
 
-            return _gate.GetSurveyById((int)id);
-        }
         [HttpPost]
         [Route("[action]")]
         public bool SubscribeTheSite([FromBody] SubscriberDto subscriber){
@@ -118,6 +96,14 @@ namespace Bader.Controllers
             return _gate.InsertMassage(message);
 
 
+        }
+
+
+        [HttpPost]
+        [Route("[action]")]
+        public bool InsertUserAnswerForSurvey(UserSurveyAnswer surveyAnswer)
+        {
+            return _Gate.InsertUserAnswerForSurvey(surveyAnswer);
         }
 
 

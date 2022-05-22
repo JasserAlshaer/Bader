@@ -56,9 +56,6 @@ namespace Bader.Infra.Services
             return _repos.InsertNewSurvey(survey);
         }
 
-        public bool InsertUserAnswerForSurvey(UserSurveyAnswer surveyAnswer)
-        {
-            return _repos.InsertUserAnswerForSurvey(surveyAnswer);
-        }
+       
     }
 }

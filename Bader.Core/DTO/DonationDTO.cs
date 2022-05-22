@@ -7,11 +7,11 @@ namespace Bader.Core.DTO
     public class DonationDTO
     {
         public string Name { get; set; }
-        public double? Amount { get; set; }
-        public int? DonationCampaignsId { get; set; }
+        public string Amount { get; set; }
+        public string DonationCampaignsId { get; set; }
         public string Email { get; set; }
         public string CardNumber { get; set; }
         public string Cvv2 { get; set; }
-        public DateTime? ExpireDate { get; set; }
+        public DateTime ExpireDate { get; set; }
     }
 }

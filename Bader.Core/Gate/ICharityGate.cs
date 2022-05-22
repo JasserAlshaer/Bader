@@ -29,7 +29,7 @@ namespace Bader.Core.Gate
 
 
 
-        public bool InsertUserAnswerForSurvey(UserSurveyAnswer surveyAnswer);
+       
 
 
     }

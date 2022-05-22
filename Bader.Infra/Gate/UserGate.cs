@@ -36,7 +36,7 @@ namespace Bader.Infra.Gate
 
        
 
-        public List<DonationCampaign> FetchDonationCampagin(DonationCampaingeRequestDTO fillter)
+        public List<DonationCampaignsResultDTO> FetchDonationCampagin(DonationCampaingeRequestDTO fillter)
         {
             return _service.FetchDonationCampagin(fillter);
         }
@@ -92,6 +92,12 @@ namespace Bader.Infra.Gate
         public bool SubscribeTheSite(SubscriberDto subscriber)
         {
             return _service.SubscribeTheSite(subscriber);
+        }
+
+
+        public bool InsertUserAnswerForSurvey(UserSurveyAnswer surveyAnswer)
+        {
+            return _service.InsertUserAnswerForSurvey(surveyAnswer);
         }
     }
 }

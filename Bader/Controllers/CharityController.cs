@@ -96,10 +96,7 @@ namespace Bader.Controllers
             return _Gate.InsertNewSurvey(survey);
         }
 
-        public bool InsertUserAnswerForSurvey(UserSurveyAnswer surveyAnswer)
-        {
-            return _Gate.InsertUserAnswerForSurvey(surveyAnswer);
-        }
+       
 
     }
 }

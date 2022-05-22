@@ -65,11 +65,6 @@ namespace Bader.Infra.Repository
             return true;
         }
 
-        public bool InsertUserAnswerForSurvey(UserSurveyAnswer userSurveyAnswer)
-        {
-            _context.Add(userSurveyAnswer);
-            _context.SaveChanges();
-            return true;
-        }
+       
     }
 }

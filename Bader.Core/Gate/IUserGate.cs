@@ -12,7 +12,7 @@ namespace Bader.Core.Services
 
         //public bool InsertMessageRecords(Message message);
 
-        public List<DonationCampaign> FetchDonationCampagin(DonationCampaingeRequestDTO fillter);
+        public List<DonationCampaignsResultDTO> FetchDonationCampagin(DonationCampaingeRequestDTO fillter);
 
         public List<Initiative> FetchInitiative(InitiativeDTO fillter);
 
@@ -38,6 +38,8 @@ namespace Bader.Core.Services
         public bool SubscribeTheSite(SubscriberDto subscriber);
 
         public bool InsertMassage(Message message);
+
+        public bool InsertUserAnswerForSurvey(UserSurveyAnswer surveyAnswer);
 
     }
 }

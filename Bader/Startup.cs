@@ -45,7 +45,7 @@ namespace Bader
             services.AddScoped<IAuthorizationGate, AuthorizationGate>();
             services.AddScoped<IAuthorizationService, AuthorizationService>();
             services.AddScoped<IAuthorizationRepository, AuthorizationRepository>();
-          
+            
             services.AddCors(corsOptions =>
             {
                 corsOptions.AddPolicy("x",
@@ -57,6 +57,7 @@ namespace Bader
                         WithOrigins("http://localhost:4200");
                 });
             });
+            services.AddSwaggerGen();
 
         }
 
@@ -77,6 +78,11 @@ namespace Bader
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My Test1 Api v1");
             });
         }
     }

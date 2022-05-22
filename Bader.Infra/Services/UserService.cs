@@ -32,7 +32,7 @@ namespace Bader.Infra.Services
 
 
 
-        public List<DonationCampaign> FetchDonationCampagin(DonationCampaingeRequestDTO fillter)
+        public List<DonationCampaignsResultDTO> FetchDonationCampagin(DonationCampaingeRequestDTO fillter)
         {
             return _repository.FetchDonationCampagin(fillter);
         }
@@ -87,6 +87,11 @@ namespace Bader.Infra.Services
         public bool SubscribeTheSite(SubscriberDto subscriber)
         {
             return _repository.SubscribeTheSite(subscriber);
+        }
+
+        public bool InsertUserAnswerForSurvey(UserSurveyAnswer surveyAnswer)
+        {
+            return _repos.InsertUserAnswerForSurvey(surveyAnswer);
         }
     }
 }
