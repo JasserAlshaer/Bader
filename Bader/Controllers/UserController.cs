@@ -70,7 +70,7 @@ namespace Bader.Controllers
         }
         [HttpGet]
         [Route("[action]")]
-        public Charity GetCharityById(int id){
+        public CharitySingleDTO GetCharityById([FromQuery]int id){
             return _gate.GetCharityById(id);
         }
         [HttpGet]

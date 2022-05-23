@@ -51,7 +51,7 @@ namespace Bader.Infra.Gate
             return _service.GetAllCharity();
         }
 
-        public Charity GetCharityById(int id)
+        public CharitySingleDTO GetCharityById(int id)
         {
             return _service.GetCharityById(id);
         }

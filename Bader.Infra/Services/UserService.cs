@@ -47,7 +47,7 @@ namespace Bader.Infra.Services
             return _repository.GetAllCharity();
         }
 
-        public Charity GetCharityById(int id)
+        public CharitySingleDTO GetCharityById(int id)
         {
             return _repository.GetCharityById(id);
         }

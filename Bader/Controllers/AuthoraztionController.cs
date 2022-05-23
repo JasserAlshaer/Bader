@@ -35,7 +35,7 @@ namespace Bader.Controllers
         {
             Charity charity1 = new Charity();
             charity1.Name = charity.Name;
-            charity1.IsActive = charity.IsActive;
+            charity1.IsActive = false;
             charity1.Phone = charity1.Phone;    
 
             return _Gate.RegisterNewCharity(charity1, charity.email, charity.password);

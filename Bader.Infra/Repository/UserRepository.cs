@@ -91,9 +91,20 @@ namespace Bader.Infra.Repository
             return _context.Charities.DefaultIfEmpty().ToList();
         }
 
-        public Charity GetCharityById(int id)
+        public CharitySingleDTO GetCharityById(int id)
         {
-            return _context.Charities.Where(x=> x.CharityId==id).DefaultIfEmpty().SingleOrDefault();
+            CharitySingleDTO charitySingle=new CharitySingleDTO();
+            Charity i= _context.Charities.Where(x=> x.CharityId==id).DefaultIfEmpty().SingleOrDefault();
+            charitySingle.CharityId=i.CharityId;
+            charitySingle.Description=i.Description;
+            charitySingle.PreviewVideoPath=i.PreviewVideoPath;
+            charitySingle.ProfileImagePath=i.ProfileImagePath;
+            charitySingle.Phone=i.Phone;
+            charitySingle.DateofEstablishment=i.DateofEstablishment;
+            charitySingle.Name=i.Name;
+            charitySingle.Addresses= _context.Addresses.Where(x=> x.CharityId==i.CharityId).ToList();
+            charitySingle.Services = _context.Services.Where(x => x.CharityId == i.CharityId).ToList();
+            return charitySingle;
         }
 
         public List<Charity> GetCharityByName(string name="")

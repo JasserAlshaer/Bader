@@ -24,7 +24,7 @@ namespace Bader.Core.Services
         public bool DonateToSite(DonationDTO siteDonar);
 
         public List<Charity> GetAllCharity();
-        public Charity GetCharityById(int id);
+        public CharitySingleDTO GetCharityById(int id);
 
         public List<Charity> GetCharityByName(string name);
 
