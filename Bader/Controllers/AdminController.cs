@@ -73,12 +73,14 @@ namespace Bader.Controllers
             return Ok(_adminGate.GetAllWebSiteSubscriberInformation());
         }
 
-
+        [HttpGet]
+        [Route("[action]")]
         public List<Message> GetAllUserMessages()
         {
             return _adminGate.GetAllUserMessages();
         }
-
+        [HttpGet]
+        [Route("[action]")]
         public WebStaticsDTO GetAllWebSiteStatics()
         {
             return _adminGate.GetAllWebSiteStatics();
