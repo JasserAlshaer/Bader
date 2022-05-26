@@ -38,7 +38,7 @@ namespace Bader.Infra.Services
                     Subject = new ClaimsIdentity(new Claim[]
                     {
                         new Claim(ClaimTypes.Email,result.Email),
-                        new Claim (ClaimTypes.Role,result.roleID+""),
+                        new Claim ("RoleId",result.roleID+""),
                         new Claim("ChartiyId",result.CharityID+""),
                         new Claim("AdminId",result.AdminId+"")
                     }),

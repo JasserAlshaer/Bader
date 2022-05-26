@@ -50,12 +50,7 @@ namespace Bader.Controllers
         [Route("[action]")]
         public IActionResult GetAllNumericInfo()
         {
-        
-
-                return Ok(_gate.GetAllNumericInfo());
-          
-   
-         
+                return Ok(_gate.GetAllNumericInfo());  
         }
         
         [HttpPost]

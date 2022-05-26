@@ -76,6 +76,8 @@ namespace Bader.Infra.Repository
 
         public bool RegisterNewCharity(Charity charity, string email, string password)
         {
+
+
             _context.Add(charity);
             _context.SaveChanges();
 

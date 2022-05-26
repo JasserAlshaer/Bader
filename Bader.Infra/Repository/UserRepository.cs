@@ -90,7 +90,7 @@ namespace Bader.Infra.Repository
         {
             return _context.Charities.DefaultIfEmpty().ToList();
         }
-
+        //Othaman : قرأه معلومات جمعيه واحده وعرضها 
         public CharitySingleDTO GetCharityById(int id)
         {
             CharitySingleDTO charitySingle=new CharitySingleDTO();
@@ -106,7 +106,7 @@ namespace Bader.Infra.Repository
             charitySingle.Services = _context.Services.Where(x => x.CharityId == i.CharityId).ToList();
             return charitySingle;
         }
-
+        
         public List<Charity> GetCharityByName(string name="")
         {
             return _context.Charities.Where(item => item.Name.Contains(name)).ToList();
@@ -133,7 +133,7 @@ namespace Bader.Infra.Repository
             webStaticsDTO.SummationOfInitiatives = _context.Initiatives.Count();
             webStaticsDTO.SummationOfSubscriber = _context.Subscribers.Count();
             webStaticsDTO.SummationOfDonationCampainge=_context.DonationCampaigns.Count();
-            webStaticsDTO.SummationOfDonations = 0;
+            webStaticsDTO.SummationOfDonations = _context.SiteDonars.Sum(x=> x.Amount).Value;
             return webStaticsDTO;
         }
 

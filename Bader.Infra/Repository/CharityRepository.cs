@@ -65,6 +65,27 @@ namespace Bader.Infra.Repository
             return true;
         }
 
-       
+
+
+        public List<UserSuervy> GetUserSuerviesAnswer(int eventId)
+        {
+            return _context.UserSuervies.Where(x=> x.InitiativesId==eventId).ToList();
+        }
+        public bool InsertAddress(Address address, int charityID)
+        {
+            _context.Add(address);
+            _context.SaveChanges();
+            return true;
+        }
+
+        public bool InsertService(Service service, int charityId)
+        {
+             _context.Add(service);
+            _context.SaveChanges();
+            return true;
+        }
+
+
+
     }
 }

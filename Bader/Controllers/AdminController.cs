@@ -60,17 +60,17 @@ namespace Bader.Controllers
         public IActionResult GetAllWebSiteSubscriberInformation([FromHeader]string token)
 
         {
-            int code=DecodeToken(token);
-            if(code==(int)RoleType.Admin)
-            {
-                return Ok(_adminGate.GetAllWebSiteSubscriberInformation());
-            }
-            else
-            {
-                return Unauthorized();
-            }
+            //int code=DecodeToken(token);
+            //if(code==(int)RoleType.Admin)
+            //{
+               
+            //}
+            //else
+            //{
+            //    return Unauthorized();
+            //}
 
-          
+            return Ok(_adminGate.GetAllWebSiteSubscriberInformation());
         }
 
 
@@ -84,10 +84,8 @@ namespace Bader.Controllers
             return _adminGate.GetAllWebSiteStatics();
         }
 
-        public bool ResponseToUserMassage(ResponseDTO response)
-        {
-            return _adminGate.ResponseToUserMassage(response);
-        }
 
+
+        
     }
 }

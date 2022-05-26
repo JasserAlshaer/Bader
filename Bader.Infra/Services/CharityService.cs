@@ -56,6 +56,21 @@ namespace Bader.Infra.Services
             return _repos.InsertNewSurvey(survey);
         }
 
-       
+
+        public List<UserSuervy> GetUserSuerviesAnswer(int eventId)
+        {
+            return _repos.GetUserSuerviesAnswer(eventId);
+        }
+        public bool InsertAddress(Address address, int charityID)
+        {
+            return _repos.InsertAddress(address, charityID);
+        }
+
+        public bool InsertService(Service service, int charityId)
+        {
+            return _repos.InsertService(service, charityId);
+        }
+
+
     }
 }

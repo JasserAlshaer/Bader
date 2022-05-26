@@ -56,20 +56,6 @@ namespace Bader.Controllers
             }
         }
 
-        public List<Option> GetOptionsByQuestionId(int questionId)
-        {
-            return _Gate.GetOptionsByQuestionId(questionId);
-        }
-
-        public List<QuestionType> GetQuestionTypes()
-        {
-            return _Gate.GetQuestionTypes();
-        }
-
-        public List<Question> GetSurveyQuestionsBySurveyId(int surveyId)
-        {
-            return _Gate.GetSurveyQuestionsBySurveyId((int)surveyId);
-        }
 
         public bool InsertDonationCampaign(DonationCampaign donationCampaign)
         {
@@ -81,22 +67,23 @@ namespace Bader.Controllers
             return _Gate.InsertNewInitiative(initiative);
         }
 
-        public bool InsertNewOption(Option option)
+        public List<UserSuervy> GetUserSuerviesAnswer(int eventId)
         {
-            return _Gate.InsertNewOption(option);
+            return _Gate.GetUserSuerviesAnswer(eventId);
+        }
+        public bool InsertAddress(Address address, int charityID)
+        {
+            return _Gate.InsertAddress(address, charityID);
         }
 
-        public bool InsertNewQuestion(Question question)
+        public bool InsertService(Service service, int charityId)
         {
-            return _Gate.InsertNewQuestion(question);
+            return _Gate.InsertService(service, charityId);
         }
 
-        public bool InsertNewSurvey(Survey survey)
-        {
-            return _Gate.InsertNewSurvey(survey);
-        }
 
-       
+
+
 
     }
 }

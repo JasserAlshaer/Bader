@@ -56,6 +56,20 @@ namespace Bader.Infra.Gate
             return _Service.InsertNewSurvey(survey);
         }
 
-      
+        public List<UserSuervy> GetUserSuerviesAnswer(int eventId)
+        {
+            return _Service.GetUserSuerviesAnswer(eventId);
+        }
+        public bool InsertAddress(Address address, int charityID)
+        {
+            return _Service.InsertAddress(address, charityID);
+        }
+
+        public bool InsertService(Service service, int charityId)
+        {
+            return _Service.InsertService(service, charityId);
+        }
+
+
     }
 }
