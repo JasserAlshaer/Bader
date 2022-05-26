@@ -14,10 +14,13 @@ namespace Bader.Controllers
     public class CharityController : ControllerBase
     {
         private readonly ICharityGate _Gate;
+        private readonly BaderContext _Context;
 
 
-        public CharityController(ICharityGate gate)
+        public CharityController(ICharityGate gate,BaderContext context)
         {
+
+            _Context = context;
             this._Gate = gate;
         }
 
@@ -79,6 +82,30 @@ namespace Bader.Controllers
         public bool InsertService(Service service, int charityId)
         {
             return _Gate.InsertService(service, charityId);
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+        public IActionResult FetchCampagin([FromQuery]int charityId)
+        {
+
+
+            return Ok(_Context.DonationCampaigns.Where(record => record.CharityId == charityId)
+                .ToList());
+
+        }
+        [HttpGet]
+        [Route("[action]")]
+        public IActionResult FetchEvents([FromQuery] int charityId)
+        {
+
+
+            return Ok(_Context.Initiatives.Where(record => record.InitiativesId == charityId)
+               .ToList());
+
+
+
+
         }
 
 
