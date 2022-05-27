@@ -82,15 +82,15 @@ namespace Bader.Controllers
 
         [HttpPost]
         [Route("[action]")]
-        public bool InsertAddress(Address address, int charityID)
+        public bool InsertAddress(Address address)
         {
-            return _Gate.InsertAddress(address, charityID);
+            return _Gate.InsertAddress(address,(int) address.CharityId);
         }
         [HttpPost]
         [Route("[action]")]
-        public bool InsertService(Service service, int charityId)
+        public bool InsertService([FromBody]Service service)
         {
-            return _Gate.InsertService(service, charityId);
+            return _Gate.InsertService(service, service.ServiceId);
         }
 
         [HttpGet]
