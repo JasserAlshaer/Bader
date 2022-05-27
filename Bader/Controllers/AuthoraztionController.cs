@@ -48,9 +48,9 @@ namespace Bader.Controllers
         }
 
 
-        [HttpPost]
+        [HttpGet]
         [Route("[action]")]
-        public bool ResponseToCharityAddingRequest(int response, int charityId)
+        public bool ResponseToCharityAddingRequest([FromQuery]int response,[FromQuery] int charityId)
         {
             return _Gate.ResponseToCharityAddingRequest(response, charityId);
         }

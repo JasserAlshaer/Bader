@@ -155,6 +155,8 @@ namespace Bader.Core.Data
 
                 entity.Property(e => e.InitiativesId).HasColumnName("InitiativesID");
 
+                entity.Property(e => e.CharityId).HasColumnName("CharityID");
+
                 entity.Property(e => e.Description).IsUnicode(false);
 
                 entity.Property(e => e.EndAt).HasColumnType("datetime");
@@ -170,6 +172,11 @@ namespace Bader.Core.Data
                 entity.Property(e => e.Title)
                     .HasMaxLength(150)
                     .IsUnicode(false);
+
+                entity.HasOne(d => d.Charity)
+                    .WithMany(p => p.Initiatives)
+                    .HasForeignKey(d => d.CharityId)
+                    .HasConstraintName("FK_Initiatives_Charity");
             });
 
             modelBuilder.Entity<Link>(entity =>

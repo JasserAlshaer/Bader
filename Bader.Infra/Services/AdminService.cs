@@ -16,11 +16,11 @@ namespace Bader.Infra.Services
 
         public AdminService(IAdminRepository adminRepository)
         {
-                this.adminRepository = adminRepository;
+            this.adminRepository = adminRepository;
         }
         public List<Message> GetAllUserMessages()
         {
-           return adminRepository.GetAllUserMessages();
+            return adminRepository.GetAllUserMessages();
         }
 
         public WebStaticsDTO GetAllWebSiteStatics()
@@ -36,6 +36,12 @@ namespace Bader.Infra.Services
         public bool ResponseToUserMassage(ResponseDTO response)
         {
             return adminRepository.ResponseToUserMassage(response);
+        }
+
+        public List<Charity> GetCharitiesJoinRequests()
+        {
+            return adminRepository.GetCharitiesJoinRequests();
+
         }
     }
 }

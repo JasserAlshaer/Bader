@@ -30,13 +30,21 @@ namespace Bader.Infra.Repository
             webStaticsDTO.SummationOfInitiatives = _context.Initiatives.Count();
             webStaticsDTO.SummationOfSubscriber = _context.Subscribers.Count();
             webStaticsDTO.SummationOfDonationCampainge = _context.DonationCampaigns.Count();
-            webStaticsDTO.SummationOfDonations = 0;
+            webStaticsDTO.SummationOfDonations = _context.SiteDonars.Sum(x => x.Amount).Value; ;
+            webStaticsDTO.Charities=_context.Charities.Count();
+            webStaticsDTO.UserMassages=_context.Messages.Count();
+            webStaticsDTO.Donors=_context.Donors.Count()+_context.SiteDonars.Count();
             return webStaticsDTO;
         }
 
         public List<Subscriber> GetAllWebSiteSubscriberInformation()
         {
             return _context.Subscribers.ToList();
+        }
+
+        public List<Charity> GetCharitiesJoinRequests()
+        {
+            return _context.Charities.Where(x=>x.IsActive==false).ToList();
         }
 
 

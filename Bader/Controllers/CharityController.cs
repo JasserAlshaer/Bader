@@ -59,26 +59,35 @@ namespace Bader.Controllers
             }
         }
 
-
+        [HttpPost]
+        [Route("[action]")]
         public bool InsertDonationCampaign(DonationCampaign donationCampaign)
         {
             return _Gate.InsertDonationCampaign(donationCampaign);
         }
-
+        [HttpPost]
+        [Route("[action]")]
         public bool InsertNewInitiative(Initiative initiative)
         {
+            initiative.ScheduleType = "Sunday-Friday";
+            
             return _Gate.InsertNewInitiative(initiative);
         }
-
-        public List<UserSuervy> GetUserSuerviesAnswer(int eventId)
+        [HttpGet]
+        [Route("[action]")]
+        public List<UserSuervy> GetUserSuerviesAnswer([FromQuery]int eventId)
         {
             return _Gate.GetUserSuerviesAnswer(eventId);
         }
+
+        [HttpPost]
+        [Route("[action]")]
         public bool InsertAddress(Address address, int charityID)
         {
             return _Gate.InsertAddress(address, charityID);
         }
-
+        [HttpPost]
+        [Route("[action]")]
         public bool InsertService(Service service, int charityId)
         {
             return _Gate.InsertService(service, charityId);
@@ -100,7 +109,7 @@ namespace Bader.Controllers
         {
 
 
-            return Ok(_Context.Initiatives.Where(record => record.InitiativesId == charityId)
+            return Ok(_Context.Initiatives.Where(record => record.CharityId == charityId)
                .ToList());
 
 

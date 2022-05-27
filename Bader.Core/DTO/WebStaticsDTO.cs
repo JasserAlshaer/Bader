@@ -11,6 +11,11 @@ namespace Bader.Core.DTO
         public int SummationOfInitiatives { get; set; }
         public double SummationOfDonations { get; set; }
 
+        public int Charities { get; set; }
+        public int UserMassages { get; set; }
+
+        public int Donors { get; set; }
+
 
      }
 }

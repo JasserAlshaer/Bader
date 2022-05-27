@@ -15,5 +15,7 @@ namespace Bader.Core.Gate
         public bool ResponseToUserMassage(ResponseDTO response);
 
         public WebStaticsDTO GetAllWebSiteStatics();
+
+        public List<Charity> GetCharitiesJoinRequests();
     }
 }

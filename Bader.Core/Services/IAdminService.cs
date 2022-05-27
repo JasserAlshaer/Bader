@@ -15,7 +15,7 @@ namespace Bader.Core.Services
 
         public bool ResponseToUserMassage(ResponseDTO response);
 
-
+        public List<Charity> GetCharitiesJoinRequests();
         public WebStaticsDTO GetAllWebSiteStatics();
     }
 }

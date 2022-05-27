@@ -60,16 +60,7 @@ namespace Bader.Controllers
         public IActionResult GetAllWebSiteSubscriberInformation([FromHeader]string token)
 
         {
-            //int code=DecodeToken(token);
-            //if(code==(int)RoleType.Admin)
-            //{
-               
-            //}
-            //else
-            //{
-            //    return Unauthorized();
-            //}
-
+          
             return Ok(_adminGate.GetAllWebSiteSubscriberInformation());
         }
 
@@ -86,8 +77,15 @@ namespace Bader.Controllers
             return _adminGate.GetAllWebSiteStatics();
         }
 
+        [HttpGet]
+        [Route("[action]")]
+        public List<Charity> GetCharitiesJoinRequests()
+        {
+            return _adminGate.GetCharitiesJoinRequests();
+        }
 
 
-        
+
+
     }
 }

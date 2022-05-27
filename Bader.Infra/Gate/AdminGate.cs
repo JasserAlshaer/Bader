@@ -35,5 +35,10 @@ namespace Bader.Infra.Gate
         {
             return adminService.ResponseToUserMassage(response);
         }
+        public List<Charity> GetCharitiesJoinRequests()
+        {
+            return adminService.GetCharitiesJoinRequests();
+
+        }
     }
 }

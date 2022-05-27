@@ -11,6 +11,7 @@ namespace Bader.Core.Data
         {
             Addresses = new HashSet<Address>();
             DonationCampaigns = new HashSet<DonationCampaign>();
+            Initiatives = new HashSet<Initiative>();
             Links = new HashSet<Link>();
             Logins = new HashSet<Login>();
             Services = new HashSet<Service>();
@@ -27,6 +28,7 @@ namespace Bader.Core.Data
 
         public virtual ICollection<Address> Addresses { get; set; }
         public virtual ICollection<DonationCampaign> DonationCampaigns { get; set; }
+        public virtual ICollection<Initiative> Initiatives { get; set; }
         public virtual ICollection<Link> Links { get; set; }
         public virtual ICollection<Login> Logins { get; set; }
         public virtual ICollection<Service> Services { get; set; }

@@ -21,7 +21,9 @@ namespace Bader.Core.Data
         public string ScheduleType { get; set; }
         public int? Seats { get; set; }
         public int? SurveyId { get; set; }
+        public int? CharityId { get; set; }
 
+        public virtual Charity Charity { get; set; }
         public virtual ICollection<UserSuervy> UserSuervies { get; set; }
     }
 }
