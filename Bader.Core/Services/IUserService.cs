@@ -32,7 +32,7 @@ namespace Bader.Core.Services
 
         public DonationCampaign GetDonationCampaignById(int id);
 
-        public bool DonateForSpecificDonationCampaign(Donor donor);
+       // public bool DonateForSpecificDonationCampaign(Donor donor);
 
         public Survey GetSurveyById(int id);
 
@@ -40,7 +40,7 @@ namespace Bader.Core.Services
 
         public bool InsertMassage(Message message);
 
-        public bool InsertUserAnswerForSurvey(UserSuervy surveyAnswer);
+        public bool InsertUserAnswerForSurvey(SurveyDTO surveyAnswer);
 
 
     }

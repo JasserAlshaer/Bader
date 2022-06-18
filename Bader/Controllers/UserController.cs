@@ -99,15 +99,9 @@ namespace Bader.Controllers
         public bool InsertUserAnswerForSurvey(SurveyDTO surveyAnswer)
         {
 
-            UserSuervy userSuervy=new UserSuervy();
-            userSuervy.Age=surveyAnswer.Age;
-            userSuervy.Name=surveyAnswer.Name;
-            userSuervy.Email=surveyAnswer.Email;
-            userSuervy.Date=DateTime.Now;
-            userSuervy.InitiativesId=Convert.ToInt32(surveyAnswer.InitiativesId);
-            userSuervy.PhoneNumber=surveyAnswer.PhoneNumber;
+            
 
-            return _gate.InsertUserAnswerForSurvey(userSuervy);
+            return _gate.InsertUserAnswerForSurvey(surveyAnswer);
         }
 
 

@@ -33,7 +33,7 @@ namespace Bader.Infra.Repository
             }
             else
             {
-                if (auth.LastLogout < auth.LastLogin)
+                if (auth.LastLogout < auth.LastLogin) //the user still login 
                 {
                     return null;
                 }
@@ -45,7 +45,7 @@ namespace Bader.Infra.Repository
                     LoginResultDTO loginResultDTO = new LoginResultDTO();
                     loginResultDTO.Email = auth.Email;
                     loginResultDTO.roleID = auth.RoleId;
-                    loginResultDTO.AdminId= auth.CharityId;
+                    loginResultDTO.AdminId= auth.AdminId;
                     loginResultDTO.CharityID = auth.CharityId;
                     return loginResultDTO;
                   
@@ -89,6 +89,7 @@ namespace Bader.Infra.Repository
             login.RoleId = 2;
             _context.Add(login);
             _context.SaveChanges();
+
             return true;
         }
 

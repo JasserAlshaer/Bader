@@ -16,15 +16,17 @@ namespace Bader.Infra.Services
         {
             _repository = repos;
         }
-        public bool DonateForSpecificDonationCampaign(Donor donor)
-        {
-            return _repository.DonateForSpecificDonationCampaign(donor);
-        }
+        //public bool DonateForSpecificDonationCampaign(Donor donor)
+        //{
+        //    return _repository.DonateForSpecificDonationCampaign(donor);
+        //}
 
         public WebStaticsDTO GetAllNumericInfo()
         {
             return _repository.GetAllNumericInfo();
         }
+
+
         public bool DonateToSite(DonationDTO siteDonar)
         {
             return _repository.DonateToSite(siteDonar);
@@ -89,9 +91,16 @@ namespace Bader.Infra.Services
             return _repository.SubscribeTheSite(subscriber);
         }
 
-        public bool InsertUserAnswerForSurvey(UserSuervy surveyAnswer)
+        public bool InsertUserAnswerForSurvey(SurveyDTO surveyAnswer)
         {
-            return _repository.InsertUserAnswerForSurvey(surveyAnswer);
+            UserSuervy userSuervy = new UserSuervy();
+            userSuervy.Age = surveyAnswer.Age;
+            userSuervy.Name = surveyAnswer.Name;
+            userSuervy.Email = surveyAnswer.Email;
+            userSuervy.Date = DateTime.Now;
+            userSuervy.InitiativesId = Convert.ToInt32(surveyAnswer.InitiativesId);
+            userSuervy.PhoneNumber = surveyAnswer.PhoneNumber;
+            return _repository.InsertUserAnswerForSurvey(userSuervy);
         }
     }
 }

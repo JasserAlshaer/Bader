@@ -24,10 +24,10 @@ namespace Bader.Infra.Gate
         {
             return _service.GetAllNumericInfo();
         }
-        public bool DonateForSpecificDonationCampaign(Donor donor)
-        {
-            return _service.DonateForSpecificDonationCampaign(donor);
-        }
+        //public bool DonateForSpecificDonationCampaign(Donor donor)
+        //{
+        //    return _service.DonateForSpecificDonationCampaign(donor);
+        //}
 
         public bool DonateToSite(DonationDTO siteDonar)
         {
@@ -95,7 +95,7 @@ namespace Bader.Infra.Gate
         }
 
 
-        public bool InsertUserAnswerForSurvey(UserSuervy surveyAnswer)
+        public bool InsertUserAnswerForSurvey(SurveyDTO surveyAnswer)
         {
             return _service.InsertUserAnswerForSurvey(surveyAnswer);
         }

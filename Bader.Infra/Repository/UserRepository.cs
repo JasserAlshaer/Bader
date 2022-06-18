@@ -18,25 +18,24 @@ namespace Bader.Infra.Repository
         {
             _context = context;
         }
-        public bool DonateForSpecificDonationCampaign(Donor donor)
-        {
-            _context.Add(donor);
-            _context.SaveChanges();
-            return true;
-        }
+       
 
         public bool DonateToSite(DonationDTO siteDonar)
         {
+
             var card = _context.PaymentMethods.Where(x => x.CardNumber == siteDonar.CardNumber
-              && x.Cvv2 == siteDonar.Cvv2 && x.Balance >= Convert.ToDouble(siteDonar.Amount) && x.ExpireDate <= siteDonar.ExpireDate).SingleOrDefault();
+              && x.Cvv2 == siteDonar.Cvv2 && x.Balance >= Convert.ToDouble(siteDonar.Amount)).SingleOrDefault();
             if (card != null)
             {
+                 card.Balance -= Convert.ToDouble(siteDonar.Amount);
+                _context.Update(card);
+                _context.SaveChanges();
                 if (Convert.ToInt32(siteDonar.DonationCampaignsId) == 0)
                 {
                     SiteDonar site = new SiteDonar();
                     site.Email=siteDonar.Email;
                     site.Amount= Convert.ToDouble(siteDonar.Amount);
-                    _context.Add(siteDonar);
+                    _context.Add(site);
                     _context.SaveChanges();
                     return true;
                 }
@@ -50,7 +49,7 @@ namespace Bader.Infra.Repository
                     _context.SaveChanges();
                     return true;
                 }
-               
+                
             }
             else
             {
@@ -66,7 +65,7 @@ namespace Bader.Infra.Repository
             List<DonationCampaignsResultDTO> result = new List<DonationCampaignsResultDTO>();
             List<DonationCampaign> campaigns = _context.DonationCampaigns.ToList();
 
-             foreach(DonationCampaign campaign in campaigns)
+            foreach(DonationCampaign campaign in campaigns)
             {
                 DonationCampaignsResultDTO opt=new DonationCampaignsResultDTO();
                 opt.DonationCampaignsId=campaign.DonationCampaignsId;
@@ -83,14 +82,14 @@ namespace Bader.Infra.Repository
 
         public List<Initiative> FetchInitiative(InitiativeDTO fillter)
         {
-            return _context.Initiatives.DefaultIfEmpty().ToList();
+            return _context.Initiatives.Where(x=>x.EndAt<= DateTime.Now).DefaultIfEmpty().ToList();
         }
 
         public List<Charity> GetAllCharity()
         {
-            return _context.Charities.DefaultIfEmpty().ToList();
+            return _context.Charities.DefaultIfEmpty().Where(x=>x.IsActive==true).ToList();
         }
-        //Othaman : قرأه معلومات جمعيه واحده وعرضها 
+        
         public CharitySingleDTO GetCharityById(int id)
         {
             CharitySingleDTO charitySingle=new CharitySingleDTO();

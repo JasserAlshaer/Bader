@@ -31,7 +31,7 @@ namespace Bader.Core.Repository
 
         public DonationCampaign GetDonationCampaignById(int id);
 
-        public bool DonateForSpecificDonationCampaign(Donor donor);
+        //public bool DonateForSpecificDonationCampaign(Donor donor);
 
         public Survey GetSurveyById(int id);
 
