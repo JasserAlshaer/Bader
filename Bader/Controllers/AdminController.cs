@@ -17,6 +17,11 @@ namespace Bader.Controllers
         private readonly IAdminDoor _adminGate;
 
 
+
+
+
+
+
         public AdminController(IAdminDoor adminDoor)
         {
             this._adminGate = adminDoor;
