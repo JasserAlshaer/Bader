@@ -63,7 +63,7 @@ namespace Bader.Infra.Repository
         public  List<DonationCampaignsResultDTO>FetchDonationCampagin(DonationCampaingeRequestDTO fillter)
         {   
             List<DonationCampaignsResultDTO> result = new List<DonationCampaignsResultDTO>();
-            List<DonationCampaign> campaigns = _context.DonationCampaigns.ToList();
+            List<DonationCampaign> campaigns = _context.DonationCampaigns.Where(x=>x.EndAt> DateTime.Now).ToList();
 
             foreach(DonationCampaign campaign in campaigns)
             {
@@ -82,7 +82,7 @@ namespace Bader.Infra.Repository
 
         public List<Initiative> FetchInitiative(InitiativeDTO fillter)
         {
-            return _context.Initiatives.Where(x=>x.EndAt<= DateTime.Now).DefaultIfEmpty().ToList();
+            return _context.Initiatives.Where(x=>x.EndAt >= DateTime.Now).DefaultIfEmpty().ToList();
         }
 
         public List<Charity> GetAllCharity()
@@ -133,7 +133,6 @@ namespace Bader.Infra.Repository
             webStaticsDTO.SummationOfInitiatives = _context.Initiatives.Count();
             webStaticsDTO.SummationOfSubscriber = _context.Subscribers.Count();
             webStaticsDTO.SummationOfDonationCampainge=_context.DonationCampaigns.Count();
-            //webStaticsDTO.SummationOfDonations = _context.SiteDonars.Sum(x=> x.Amount).Value;
             return webStaticsDTO;
         }
 
