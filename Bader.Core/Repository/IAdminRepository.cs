@@ -12,7 +12,7 @@ namespace Bader.Core.Repository
 
         public List<Message> GetAllUserMessages();
 
-        public bool ResponseToUserMassage(ResponseDTO response);
+        
 
         public WebStaticsDTO GetAllWebSiteStatics();
         public List<Charity> GetCharitiesJoinRequests();

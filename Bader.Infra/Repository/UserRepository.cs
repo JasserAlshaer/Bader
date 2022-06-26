@@ -103,6 +103,7 @@ namespace Bader.Infra.Repository
             charitySingle.Name=i.Name;
             charitySingle.Addresses= _context.Addresses.Where(x=> x.CharityId==i.CharityId).ToList();
             charitySingle.Services = _context.Services.Where(x => x.CharityId == i.CharityId).ToList();
+            charitySingle.Links = _context.Links.Where(x => x.CharityId == i.CharityId).ToList();
             return charitySingle;
         }
         
@@ -132,7 +133,7 @@ namespace Bader.Infra.Repository
             webStaticsDTO.SummationOfInitiatives = _context.Initiatives.Count();
             webStaticsDTO.SummationOfSubscriber = _context.Subscribers.Count();
             webStaticsDTO.SummationOfDonationCampainge=_context.DonationCampaigns.Count();
-            webStaticsDTO.SummationOfDonations = _context.SiteDonars.Sum(x=> x.Amount).Value;
+            //webStaticsDTO.SummationOfDonations = _context.SiteDonars.Sum(x=> x.Amount).Value;
             return webStaticsDTO;
         }
 
@@ -149,20 +150,14 @@ namespace Bader.Infra.Repository
         }
         public bool SubscribeTheSite(SubscriberDto subscriber)
         {
-            var code=_context.VerficatioCodes.Where(s => s.Code == subscriber.Code && s.Email==subscriber.Email).SingleOrDefault();
-            if(code == null)
-            {
-                return false;
-            }
-            else
-            {
+            
                 Subscriber subscriber1 = new Subscriber();
                 subscriber1.Email = subscriber.Email;
                 subscriber1.Name = subscriber.Name;
                 _context.Add(subscriber1);
                 _context.SaveChanges();
                 return true;
-            }
+           
            
         }
 

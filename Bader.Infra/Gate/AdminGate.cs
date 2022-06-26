@@ -4,6 +4,8 @@ using Bader.Core.Gate;
 using Bader.Core.Services;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Text;
 
 namespace Bader.Infra.Gate
@@ -12,12 +14,15 @@ namespace Bader.Infra.Gate
     {
         private readonly IAdminService adminService;
 
+       
+
         public AdminGate(IAdminService admin)
         {
             adminService= admin;
         }
         public List<Message> GetAllUserMessages()
         {
+
             return adminService.GetAllUserMessages();
         }
 
@@ -31,10 +36,7 @@ namespace Bader.Infra.Gate
             return adminService.GetAllWebSiteSubscriberInformation();
         }
 
-        public bool ResponseToUserMassage(ResponseDTO response)
-        {
-            return adminService.ResponseToUserMassage(response);
-        }
+        
         public List<Charity> GetCharitiesJoinRequests()
         {
             return adminService.GetCharitiesJoinRequests();

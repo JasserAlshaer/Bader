@@ -71,6 +71,7 @@ namespace Bader.Infra.Repository
         {
             return _context.UserSuervies.Where(x=> x.InitiativesId==eventId).ToList();
         }
+
         public bool InsertAddress(Address address, int charityID)
         {
             _context.Add(address);

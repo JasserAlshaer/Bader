@@ -33,10 +33,7 @@ namespace Bader.Infra.Services
             return adminRepository.GetAllWebSiteSubscriberInformation();
         }
 
-        public bool ResponseToUserMassage(ResponseDTO response)
-        {
-            return adminRepository.ResponseToUserMassage(response);
-        }
+      
 
         public List<Charity> GetCharitiesJoinRequests()
         {

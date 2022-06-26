@@ -2,6 +2,7 @@
 using Bader.Core.Data;
 using Bader.Core.DTO;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Bader.Core.Gate
 {
@@ -12,9 +13,9 @@ namespace Bader.Core.Gate
         public String LoginCredinital(LoginFillterDTO fillter);
 
 
-        public bool RegisterNewCharity(Charity charity, String email, string password);
+        public Task<bool> RegisterNewCharity(CharityRegisterDTO charity, String email, string password);
 
-
+        public bool ResetPassword(ResetDTO dto);
 
         public bool ResponseToCharityAddingRequest(int response, int charityId);
     }

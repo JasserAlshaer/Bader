@@ -5,6 +5,7 @@ using Bader.Core.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Bader.Infra.Gate
 {
@@ -28,7 +29,7 @@ namespace Bader.Infra.Gate
             return _authorizationService.LogoutFromSystem(email);
         }
 
-        public bool RegisterNewCharity(Charity charity, string email, string password)
+        public Task<bool> RegisterNewCharity(CharityRegisterDTO charity, string email, string password)
         {
             return _authorizationService.RegisterNewCharity(charity,email,password);
         }
@@ -36,6 +37,11 @@ namespace Bader.Infra.Gate
         public bool ResponseToCharityAddingRequest(int response, int charityId)
         {
             return _authorizationService.ResponseToCharityAddingRequest(response, charityId);
+        }
+
+        public bool ResetPassword(ResetDTO dto)
+        {
+            return _authorizationService.ResetPassword(dto);
         }
     }
 }

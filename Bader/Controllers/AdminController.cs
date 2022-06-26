@@ -20,7 +20,29 @@ namespace Bader.Controllers
 
 
 
+        public bool DecodeToken(String tokenString)
+        {
 
+            String toke = "Bearer " + tokenString;
+
+            var jwtEncodedString = toke.Substring(7);
+
+            var token = new JwtSecurityToken(jwtEncodedString: jwtEncodedString);
+
+            int roleId = Int32.Parse((token.Claims.First(c => c.Type == "RoleId").Value.ToString()));
+            if (roleId == 1 && token.ValidTo > DateTime.Now)
+            {
+
+                return true;
+            }
+            else
+            {
+
+                return false;
+            }
+
+
+        }
 
         public AdminController(IAdminDoor adminDoor)
         {
@@ -32,61 +54,66 @@ namespace Bader.Controllers
         }
 
 
-        public int DecodeToken(String tokenString)
-        {
-
-            String toke = "Bearer " + tokenString;
-
-            var jwtEncodedString = toke.Substring(7);
-
-            var token = new JwtSecurityToken(jwtEncodedString: jwtEncodedString);
-
-            int roleType = Int32.Parse((token.Claims.First(c => c.Type == "role").Value.ToString()));
-            if (roleType == 1 && token.ValidTo >= DateTime.Now)
-            {
-
-                return (int)RoleType.Admin;
-            }
-            else if (roleType == 2 && token.ValidTo >= DateTime.Now)
-            {
-
-                return (int)RoleType.Employee;
-            }
-            else
-            {
-
-
-                return (int)RoleType.NoOne;
-            }
-        }
+      
 
         [HttpGet]
         [Route("[action]")]
         public IActionResult GetAllWebSiteSubscriberInformation([FromHeader]string token)
 
         {
-          
-            return Ok(_adminGate.GetAllWebSiteSubscriberInformation());
+            if (DecodeToken(token))
+            {
+                return Ok(_adminGate.GetAllWebSiteSubscriberInformation());
+            }
+            else
+            {
+                return Unauthorized();
+            }
+            
         }
 
         [HttpGet]
         [Route("[action]")]
-        public List<Message> GetAllUserMessages()
+        public IActionResult GetAllUserMessages([FromHeader] string token)
         {
-            return _adminGate.GetAllUserMessages();
+            
+            if(DecodeToken(token))
+            {
+                return Ok(_adminGate.GetAllUserMessages());
+            }
+            else
+            {
+                return Unauthorized();
+            }
         }
         [HttpGet]
         [Route("[action]")]
-        public WebStaticsDTO GetAllWebSiteStatics()
+        public IActionResult GetAllWebSiteStatics([FromHeader] string token)
         {
-            return _adminGate.GetAllWebSiteStatics();
+            if (DecodeToken(token))
+            {
+                return Ok(_adminGate.GetAllWebSiteStatics());
+            }
+            else
+            {
+                return Unauthorized();
+            }
+           
         }
 
         [HttpGet]
         [Route("[action]")]
-        public List<Charity> GetCharitiesJoinRequests()
+        public IActionResult GetCharitiesJoinRequests([FromHeader] string token)
         {
-            return _adminGate.GetCharitiesJoinRequests();
+           
+            if (DecodeToken(token))
+            {
+                return Ok(_adminGate.GetCharitiesJoinRequests());
+            }
+            else
+            {
+                return Unauthorized();
+            }
         }
 
 

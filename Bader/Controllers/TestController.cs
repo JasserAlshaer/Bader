@@ -18,9 +18,9 @@ namespace Bader.Controllers
         }
 
         [HttpGet]
-        public List<Admin> GetAdmins()
+        public string GetAdmins()
         {
-            return SystemContext.Admins.ToList();
+            return "API Connected Successfuly";
         }
     }
 }

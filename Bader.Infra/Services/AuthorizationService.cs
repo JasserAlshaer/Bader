@@ -6,8 +6,10 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.IO;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Bader.Infra.Services
 {
@@ -45,8 +47,6 @@ namespace Bader.Infra.Services
                     Expires = DateTime.Now.AddHours(1),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey)
                     , SecurityAlgorithms.HmacSha256Signature)
-
-
                 };
                 var token = tokenHandler.CreateToken(tokenDescriptior);
                 return tokenHandler.WriteToken(token);
@@ -58,9 +58,23 @@ namespace Bader.Infra.Services
           return _repos.LogoutFromSystem(email);
         }
 
-        public bool RegisterNewCharity(Charity charity, string email, string password)
+        public bool ResetPassword(ResetDTO dto)
         {
-            return _repos.RegisterNewCharity(charity, email, password);
+            return _repos.ResetPassword(dto);
+        }
+
+        public Task<bool> RegisterNewCharity(CharityRegisterDTO charity, string email, string password)
+        {
+            
+            Charity charity1 = new Charity();
+            charity1.Name = charity.Name;
+            charity1.IsActive = false;
+            charity1.Phone = charity.Phone;
+            charity1.DateofEstablishment = DateTime.Now;
+            charity1.Description = "New Charity Join Bader Platform";
+            charity1.PreviewVideoPath = charity.video;
+            charity1.ProfileImagePath = charity.image;
+            return _repos.RegisterNewCharity(charity1, email, password);
         }
 
         public bool ResponseToCharityAddingRequest(int response, int charityId)

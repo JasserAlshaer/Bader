@@ -96,11 +96,8 @@ namespace Bader.Controllers
 
         [HttpPost]
         [Route("[action]")]
-        public bool InsertUserAnswerForSurvey(SurveyDTO surveyAnswer)
+        public bool InsertUserAnswerForSurvey([FromBody] SurveyDTO surveyAnswer)
         {
-
-            
-
             return _gate.InsertUserAnswerForSurvey(surveyAnswer);
         }
 

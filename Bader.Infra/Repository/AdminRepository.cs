@@ -47,11 +47,5 @@ namespace Bader.Infra.Repository
             return _context.Charities.Where(x=>x.IsActive==false).ToList();
         }
 
-
-        public bool ResponseToUserMassage(ResponseDTO response)
-        {
-            //Email Sender Code
-            throw new NotImplementedException();
-        }
     }
 }

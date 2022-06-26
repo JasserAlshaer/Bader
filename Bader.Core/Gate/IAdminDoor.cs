@@ -12,7 +12,7 @@ namespace Bader.Core.Gate
 
         public List<Message> GetAllUserMessages();
 
-        public bool ResponseToUserMassage(ResponseDTO response);
+     
 
         public WebStaticsDTO GetAllWebSiteStatics();
 

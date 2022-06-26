@@ -7,6 +7,7 @@ using Bader.Infra.Repository;
 using Bader.Infra.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -45,7 +46,15 @@ namespace Bader
             services.AddScoped<IAuthorizationGate, AuthorizationGate>();
             services.AddScoped<IAuthorizationService, AuthorizationService>();
             services.AddScoped<IAuthorizationRepository, AuthorizationRepository>();
-            
+
+            services.Configure<FormOptions>(o =>
+            {
+                o.ValueLengthLimit = int.MaxValue;
+                o.MultipartBodyLengthLimit = int.MaxValue;
+                o.MemoryBufferThreshold = int.MaxValue;
+            });
+
+
             services.AddCors(corsOptions =>
             {
                 corsOptions.AddPolicy("x",
@@ -54,13 +63,14 @@ namespace Bader
                     builder
                        .AllowAnyMethod().AllowAnyOrigin()
                        .AllowAnyHeader().AllowCredentials().
-                        WithOrigins("http://localhost:4200");
+                        WithOrigins("http://localhost:4200", "http://localhost:56209");
                 });
             });
             services.AddSwaggerGen();
             services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
 );
+
 
         }
 
@@ -75,7 +85,8 @@ namespace Bader
 
             app.UseCors("x");
             app.UseRouting();
-
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

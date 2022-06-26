@@ -3,6 +3,7 @@ using Bader.Core.DTO;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Bader.Core.Repository
 {
@@ -17,10 +18,14 @@ namespace Bader.Core.Repository
         public bool InsertVeriricationCodeRecord(VerficationCode verificationCode);
 
 
-        public bool RegisterNewCharity(Charity charity, String email, string password);
+        public Task<bool> RegisterNewCharity(Charity charity, String email, string password);
 
       
 
         public bool ResponseToCharityAddingRequest(int response, int charityId);
+
+
+
+        public bool ResetPassword(ResetDTO dto);
     }
 }

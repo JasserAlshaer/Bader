@@ -18,5 +18,7 @@ namespace Bader.Core.DTO
         public List<Address>Addresses { get; set; }
         public List<Service> Services { get; set; }
 
+        public List<Link>Links { get; set; }
+
     }
 }

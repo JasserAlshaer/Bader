@@ -25,13 +25,7 @@ namespace Bader.Controllers
         }
 
 
-        enum RoleType
-        {
-            NoOne, Admin, Employee
-        }
-
-
-        public int DecodeToken(String tokenString)
+        public bool DecodeToken(String tokenString)
         {
 
             String toke = "Bearer " + tokenString;
@@ -40,86 +34,127 @@ namespace Bader.Controllers
 
             var token = new JwtSecurityToken(jwtEncodedString: jwtEncodedString);
 
-            int roleType = Int32.Parse((token.Claims.First(c => c.Type == "role").Value.ToString()));
-            if (roleType == 1 && token.ValidTo >= DateTime.Now)
+            int roleId = Int32.Parse((token.Claims.First(c => c.Type == "RoleId").Value.ToString()));
+            if (roleId == 2 && token.ValidTo > DateTime.Now)
             {
 
-                return (int)RoleType.Admin;
-            }
-            else if (roleType == 2 && token.ValidTo >= DateTime.Now)
-            {
-
-                return (int)RoleType.Employee;
+                return true;
             }
             else
             {
 
-
-                return (int)RoleType.NoOne;
+                return false;
             }
+
+
         }
+
+
+
 
         [HttpPost]
         [Route("[action]")]
-        public bool InsertDonationCampaign(DonationCampaign donationCampaign)
+        public IActionResult InsertDonationCampaign([FromBody]DonationCampaign donationCampaign, [FromHeader] string token)
         {
-            return _Gate.InsertDonationCampaign(donationCampaign);
+            if (DecodeToken(token))
+            {
+                return Ok(_Gate.InsertDonationCampaign(donationCampaign));
+            }
+            else
+            {
+                return Unauthorized();
+            }
+          
         }
         [HttpPost]
         [Route("[action]")]
-        public bool InsertNewInitiative(Initiative initiative)
+        public IActionResult InsertNewInitiative([FromBody] Initiative initiative, [FromHeader] string token)
         {
             initiative.ScheduleType = "Sunday-Friday";
+            if (DecodeToken(token))
+            {
+                return Ok(_Gate.InsertNewInitiative(initiative));
+            }
+            else
+            {
+                return Unauthorized();
+            }
+           
+        }
+        [HttpGet]
+        [Route("[action]")]
+        public IActionResult GetUserSuerviesAnswer([FromQuery]int eventId, [FromHeader] string token)
+        {
+            if (DecodeToken(token))
+            {
+                return Ok(_Gate.GetUserSuerviesAnswer(eventId));
+            }
+            else
+            {
+                return Unauthorized();
+            }
+           
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        public IActionResult InsertAddress([FromBody] Address address, [FromHeader] string token)
+        {
+            if (DecodeToken(token))
+            {
+                return Ok(_Gate.InsertAddress(address, (int)address.CharityId));
+            }
+            else
+            {
+                return Unauthorized();
+            }
+           
+        }
+        [HttpPost]
+        [Route("[action]")]
+        public IActionResult InsertService([FromBody]Service service, [FromHeader] string token)
+        {
+            if (DecodeToken(token))
+            {
+                return Ok(_Gate.InsertService(service, service.ServiceId));
+            }
+            else
+            {
+                return Unauthorized();
+            }
+           
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+        public IActionResult FetchCampagin([FromQuery]int charityId, [FromHeader] string token)
+        {
+
+            if (DecodeToken(token))
+            {
+                return Ok(_Context.DonationCampaigns.Where(record => record.CharityId == charityId)
+                 .ToList());
+            }
+            else
+            {
+                return Unauthorized();
+            }
             
-            return _Gate.InsertNewInitiative(initiative);
-        }
-        [HttpGet]
-        [Route("[action]")]
-        public List<UserSuervy> GetUserSuerviesAnswer([FromQuery]int eventId)
-        {
-            return _Gate.GetUserSuerviesAnswer(eventId);
-        }
-
-        [HttpPost]
-        [Route("[action]")]
-        public bool InsertAddress(Address address)
-        {
-            return _Gate.InsertAddress(address,(int) address.CharityId);
-        }
-        [HttpPost]
-        [Route("[action]")]
-        public bool InsertService([FromBody]Service service)
-        {
-            return _Gate.InsertService(service, service.ServiceId);
-        }
-
-        [HttpGet]
-        [Route("[action]")]
-        public IActionResult FetchCampagin([FromQuery]int charityId)
-        {
-
-
-            return Ok(_Context.DonationCampaigns.Where(record => record.CharityId == charityId)
-                .ToList());
 
         }
         [HttpGet]
         [Route("[action]")]
-        public IActionResult FetchEvents([FromQuery] int charityId)
+        public IActionResult FetchEvents([FromQuery] int charityId, [FromHeader] string token)
         {
-
-
-            return Ok(_Context.Initiatives.Where(record => record.CharityId == charityId)
-               .ToList());
-
-
-
-
+            if (DecodeToken(token))
+            {
+                return Ok(_Context.Initiatives.Where(record => record.CharityId == charityId)
+              .ToList());
+            }
+            else
+            {
+                return Unauthorized();
+            }
         }
-
-
-
-
-
     }
 }

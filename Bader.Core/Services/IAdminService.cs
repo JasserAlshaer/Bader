@@ -13,7 +13,7 @@ namespace Bader.Core.Services
 
         public List<Message> GetAllUserMessages();
 
-        public bool ResponseToUserMassage(ResponseDTO response);
+        
 
         public List<Charity> GetCharitiesJoinRequests();
         public WebStaticsDTO GetAllWebSiteStatics();
