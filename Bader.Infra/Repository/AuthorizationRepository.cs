@@ -171,17 +171,17 @@ namespace Bader.Infra.Repository
             using (MD5 md5Hash = MD5.Create())
             {
                 dto.Email = GetMd5Hash(md5Hash, GetMd5Hash(md5Hash, GetMd5Hash(md5Hash, GetMd5Hash(md5Hash, dto.Email))));
-                dto.Password = GetMd5Hash(md5Hash, GetMd5Hash(md5Hash, GetMd5Hash(md5Hash, GetMd5Hash(md5Hash, dto.Password))));
+                dto.Password = GetMd5Hash(md5Hash, GetMd5Hash(md5Hash, GetMd5Hash(md5Hash, GetMd5Hash(md5Hash, dto.Password)))) + EncryptData("-Bader") + GetMd5Hash(md5Hash, DateTime.Now.ToString());
             }
             var login = _context.Logins.Where(rec => rec.Email.Substring(0, 32) == dto.Email).FirstOrDefault();
             if (login != null)
             {
-                 login.Email = dto.Email;
+                 //login.Email = dto.Email;
                  login.Password = dto.Password;
                 _context.Update(login);
                 _context.SaveChanges();
             }
-            return false;
+            return true;
         }
 
         public bool VerifiyUserEmail(VerficationCode verificationCode)

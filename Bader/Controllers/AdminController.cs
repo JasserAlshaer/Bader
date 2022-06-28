@@ -30,7 +30,7 @@ namespace Bader.Controllers
             var token = new JwtSecurityToken(jwtEncodedString: jwtEncodedString);
 
             int roleId = Int32.Parse((token.Claims.First(c => c.Type == "RoleId").Value.ToString()));
-            if (roleId == 1 && token.ValidTo > DateTime.Now)
+            if (roleId == 1 && token.ValidTo > DateTime.UtcNow)
             {
 
                 return true;

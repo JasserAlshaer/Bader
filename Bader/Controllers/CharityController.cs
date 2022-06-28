@@ -35,7 +35,7 @@ namespace Bader.Controllers
             var token = new JwtSecurityToken(jwtEncodedString: jwtEncodedString);
 
             int roleId = Int32.Parse((token.Claims.First(c => c.Type == "RoleId").Value.ToString()));
-            if (roleId == 2 && token.ValidTo > DateTime.Now)
+            if (roleId == 2 && token.ValidTo > DateTime.UtcNow)
             {
 
                 return true;
@@ -67,6 +67,7 @@ namespace Bader.Controllers
           
         }
         [HttpPost]
+        
         [Route("[action]")]
         public IActionResult InsertNewInitiative([FromBody] Initiative initiative, [FromHeader] string token)
         {
